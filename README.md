@@ -4,7 +4,7 @@
 
 ## Description
 
-An application to track you favorite workouts.
+An application to track your favorite workouts.
 
 ## Table of Contents
 
