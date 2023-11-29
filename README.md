@@ -2,6 +2,8 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
+![Screenshot](./assets/images/screenshot-2023_11_28.png)
+
 ## Description
 
 An application to track your favorite workouts.
