@@ -2,6 +2,8 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
+![Screenshot 2023-11-28](./assets/images/screenshot-2023_11_28.png)
+
 ## Description
 
 An application to track your favorite workouts.
@@ -13,7 +15,8 @@ An application to track your favorite workouts.
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
-[License](https://opensource.org/licenses/MIT)
+- [License](https://opensource.org/licenses/MIT)
+- [Screenshots](#screenshots)
 
 ## Installation
 
@@ -40,4 +43,9 @@ For any questions, please contact me via:
 
 ## License
 
-This project is licensed under the [MIT License]([License](https://opensource.org/licenses/MIT)).
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## Screenshots
+
+The workouts pages from November 28, 2023.
+![Screenshot 2023-11-28](./assets/images/screenshot-2023_11_28.png)
