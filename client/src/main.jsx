@@ -16,6 +16,7 @@ import App from './App.jsx';
 import Homepage from './pages/homepage';
 import MemberPage from './pages/memberpage';
 import ErrorPage from './pages/ErrorPage';
+import WorkoutPage from './pages/WorkoutPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/memberpage',
         element: <MemberPage />
+      },
+      {
+        path: '/workout',
+        element: <WorkoutPage />
       }
     ]
   }
