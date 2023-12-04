@@ -19,7 +19,7 @@ function NavigationBar(){
           </ul>
           <SearchBar/>
           <button className="btn btn-dark">
-            <i class="fa-solid fa-moon"></i>
+            <i className="fa-solid fa-moon"></i>
           </button>
         </div>
       </div>
