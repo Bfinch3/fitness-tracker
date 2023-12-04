@@ -3,24 +3,24 @@ import { Form, Button, Col, Row } from 'react-bootstrap';
 
 const WorkoutLogForm = () => {
   const [workoutType, setWorkoutType] = useState('');
-  const [sets, setSets] = useState('');
-  const [reps, setReps] = useState('');
-  const [duration, setDuration] = useState('');
+  const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
+  const [notes, setNotes] = useState('');
 
   const handleWorkoutTypeChange = (event) => {
     setWorkoutType(event.target.value);
   };
 
-  const handleSetsChange = (event) => {
-    setSets(event.target.value);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
-  const handleRepsChange = (event) => {
-    setReps(event.target.value);
+  const handleUrlChange = (event) => {
+    setUrl(event.target.value);
   };
 
-  const handleDurationChange = (event) => {
-    setDuration(event.target.value);
+  const handleNotesChange = (event) => {
+    setNotes(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -29,7 +29,6 @@ const WorkoutLogForm = () => {
     // Perform any necessary validation or data processing here i.e sending the workout data to your server
     
   };
-
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="workoutType">
@@ -47,27 +46,19 @@ const WorkoutLogForm = () => {
         </Form.Control>
       </Form.Group>
 
-      <Form.Group as={Row} controlId="setsRepsDuration">
-        <Form.Label column sm={2}>
-          Sets
-        </Form.Label>
-        <Col sm={2}>
-          <Form.Control type="text" value={sets} onChange={handleSetsChange} />
-        </Col>
+      <Form.Group controlId="title">
+        <Form.Label>Title</Form.Label>
+        <Form.Control type="text" value={title} onChange={handleTitleChange} />
+      </Form.Group>
 
-        <Form.Label column sm={2}>
-          Reps
-        </Form.Label>
-        <Col sm={2}>
-          <Form.Control type="text" value={reps} onChange={handleRepsChange} />
-        </Col>
+      <Form.Group controlId="url">
+        <Form.Label>URL</Form.Label>
+        <Form.Control type="text" value={url} onChange={handleUrlChange} />
+      </Form.Group>
 
-        <Form.Label column sm={2}>
-          Duration (min)
-        </Form.Label>
-        <Col sm={2}>
-          <Form.Control type="text" value={duration} onChange={handleDurationChange} />
-        </Col>
+      <Form.Group controlId="notes">
+        <Form.Label>Notes</Form.Label>
+        <Form.Control as="textarea" rows={3} value={notes} onChange={handleNotesChange} />
       </Form.Group>
 
       <Button variant="primary" type="submit">
