@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import WorkoutLogFormModal from './WorkoutLogFormModal'; // Adjust the import path
 
-const ParentComponent = () => {
+const ModalLaunch = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
@@ -19,4 +19,4 @@ const ParentComponent = () => {
   );
 };
 
-export default ParentComponent;
+export default ModalLaunch;
