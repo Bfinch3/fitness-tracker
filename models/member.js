@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 // member schema
 const memberSchema = new mongoose.Schema({
-  username: {
+  membername: {
     type: String,
-    unique: true,
+    unique: false,
     required: true,
     trim: true,
   },
@@ -20,8 +20,19 @@ const memberSchema = new mongoose.Schema({
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
+  workouts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Workout', 
+  }],
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Member',
+  }],
 });
-
+//virtual friendCount
+memberSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+});
 const Member = mongoose.model("Member", memberSchema);
 
 module.exports = Member;

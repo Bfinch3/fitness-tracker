@@ -19,7 +19,9 @@ module.exports = {
   // Get all members
   async getMembers(req, res) {
     try {
-      const members = await Member.find();
+      const members = await Member.find()
+      .populate('workouts') // Replace 'workouts' with the actual field name in your Member schema
+      .populate('friends');
       res.json(members);
     } catch (err) {
       res.status(500).json(err);
@@ -82,4 +84,42 @@ module.exports = {
         .json({ message: "Internal server error", error: err.message });
     }
   },
+  // remove friend from friend list
+  async deleteFriend(req, res) {
+    try {
+      const memberId = req.params.memberId;
+      const friendId = req.params.friendId;
+      const member = await Member.findByIdAndUpdate(
+        memberId,
+        { $pull: { friends: friendId } },
+        { new: true }
+      );
+      if (!member) {
+        return res.status(404).json({ message: "Member not found" });
+      }
+      res.json({ message: "Friend removed", member });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+ // add friend to friend list
+ async addFriend(req, res) {
+  try {
+    const memberId = req.params.memberId;
+    const friendId = req.params.friendId;
+    const member = await Member.findByIdAndUpdate(
+      memberId,
+      { $push: { friends: friendId } },
+      { new: true }
+    );
+    if (!member) {
+      return res.status(404).json({ message: "Member not found" });
+    }
+    res.json(member);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+},
 };
