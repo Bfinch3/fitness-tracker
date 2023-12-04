@@ -1,34 +1,89 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import { useState } from "react";
+import { LOGIN_USER } from "../utils/mutations";
 
-function LoginForm() {
-    return (
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicUserName">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="input" placeholder="Enter username" />
-          <Form.Text className="text-muted">
-          </Form.Text>
-        </Form.Group>
+import Auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-  
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    );
-  }
-  
-  export default LoginForm;
+const LoginForm = (props) => {
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      username: "",
+      email: "",
+      password: "",
+    });
+  };
+
+  return (
+    <Card style={{ width: "18rem" }}>
+      <Card.Body>
+        <Card.Title>Login</Card.Title>
+        <form onSubmit={handleFormSubmit}>
+          <input
+            className="form-input"
+            placeholder="Your username"
+            name="username"
+            type="input"
+            value={formState.username}
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="Your email"
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="******"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </form>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default LoginForm;
