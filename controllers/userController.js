@@ -1,6 +1,6 @@
 // userController.js
 const { Schema, model } = require("mongoose");
-const User = require('../models/user');
+const User = require('../server/models/user');
 
 module.exports = {
   createUser: async (req, res) => {
