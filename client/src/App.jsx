@@ -36,17 +36,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+function updateTheme(theme) {
+  localStorage.setItem("theme", theme);
+
+  const rootElement = document.getElementById('root');
+  rootElement.dataset.bsTheme = theme;
+  rootElement.classList.remove("bg-light", "bg-dark");
+  rootElement.classList.add(`bg-${theme}`);
+  setTimeout(() => {rootElement.style.transition = "background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1)";}, 100); // Don't apply tranisition immediatley
+}
+
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-
-    const rootElement = document.getElementById('root');
-    rootElement.dataset.bsTheme = theme;
-    rootElement.classList.remove("bg-light", "bg-dark");
-    rootElement.classList.add(`bg-${theme}`);
-  }, [theme])
+  updateTheme(theme); // Set theme as soon as app starts initializing
+  useEffect(() => { updateTheme(theme) }, [theme]);
 
   return (
     <ApolloProvider client={client}>
