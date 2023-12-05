@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // member schema
 const memberSchema = new mongoose.Schema({
-  membername: {
+  member: {
     type: String,
     unique: false,
     required: true,
