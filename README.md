@@ -52,3 +52,6 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 The workouts pages from November 28, 2023.
 ![Screenshot 2023-11-28](./assets/images/screenshot-2023_11_28.png)
+
+A single workout page from December 5, 2023.
+![Screenshot 2023-12-5](./assets/images/screenshot-2023_12_5.png)
