@@ -13,7 +13,8 @@ function ThemeToggler({ theme, setTheme }) {
 
   const buttonTheme = theme == "light" ? "dark" : "light";
   const iconTransform = {
-    transform: theme == "light" ? "translate(0%, 0%)" : "translate(-3.1rem, 0%)"
+    transform: theme == "light" ? "translate(0%, 0%)" : "translate(-3.1rem, 0%)",
+    transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important"
   }
 
   return (
