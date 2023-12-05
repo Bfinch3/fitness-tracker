@@ -4,7 +4,10 @@ function NavigationBar(){
   return (
     <nav className="navbar bg-primary navbar-expand-md" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Fitness Tracker</a>
+        <a className="navbar-brand" href="#">
+          <img src="/assets/images/logo/32.png"></img>
+          Fitness Tracker
+        </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
