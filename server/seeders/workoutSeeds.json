@@ -1,0 +1,7 @@
+[
+    {
+        "workoutText": "I like this workout!",
+        "username": "Frank",
+          "createdAt":"{% now 'iso-8601', '' %}"
+    }
+]

@@ -54,14 +54,6 @@ const LoginForm = (props) => {
         <form onSubmit={handleFormSubmit}>
           <input
             className="form-input"
-            placeholder="Your username"
-            name="username"
-            type="input"
-            value={formState.username}
-            onChange={handleChange}
-          />
-          <input
-            className="form-input"
             placeholder="Your email"
             name="email"
             type="email"

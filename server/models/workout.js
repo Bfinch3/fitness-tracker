@@ -38,6 +38,7 @@ const workoutSchema = new mongoose.Schema({
       return new Date(timestamp).toISOString();
     },
   },
+
 username: {
     type: String,
     required: true,
