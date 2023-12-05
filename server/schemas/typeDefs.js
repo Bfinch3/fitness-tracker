@@ -1,11 +1,10 @@
 const typeDefs = `
-  type user {
+  type User {
     _id: ID
     name: String
     email: String
     password: String
     workouts: [String]!
-    
   }
 
   type Auth {
