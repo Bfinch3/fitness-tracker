@@ -6,10 +6,9 @@ const mainDivStyle = {
     maxWidth: "1200px"
   };
 
-export default function MemberPage() {
+export default function UserPage() {
     return (
         <div className="d-flex gap-2 p-2 align-items-start flex-wrap" style={ mainDivStyle }>
-        <NavigationBar />
         <WorkoutList/>
         <Aside/>
 </div>

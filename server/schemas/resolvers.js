@@ -26,7 +26,7 @@ const resolvers = {
     },
 
     Mutation: {
-      //this allows us to add new members
+      //this allows us to add new users
         addUser: async (parent, { name, email, password }) => {
           const user = await User.create({ name, email, password });
           const token = signToken(user);
@@ -53,7 +53,7 @@ const resolvers = {
         addWorkout: async (parent, {userId, workout}, context) => {
           if (context.user){
             return User.findOneAndUpdate(
-              {_id: userId},
+              {_id: memeberId},
               {
                 $addToSet: { workouts: workout },
               },
@@ -66,7 +66,7 @@ const resolvers = {
           
         },
 
-        //This allows us to remove a member
+        //This allows us to remove a user
         reomoveUser: async (parent, args, context) => {
           if (context.user) {
             return User.findOneAndDelete({_id: context.user._id});

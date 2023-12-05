@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-
-// member schema
+// user schema
 const userSchema = new mongoose.Schema({
-  user: {
+  username: {
     type: String,
     unique: false,
     required: true,
@@ -20,16 +19,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
-  workouts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Workout', 
-  }],
-  friends: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Member',
-  }],
+  workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
-//virtual friendCount
+// virtual friendCount
 userSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
