@@ -1,4 +1,4 @@
-const { Workout, User } = require("../models");
+const { Workout, User } = require("../server/models");
 const mongoose = require("mongoose");
 
 module.exports = {
