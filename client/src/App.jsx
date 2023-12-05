@@ -7,6 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import NavigationBar from './components/NavigationBar';
@@ -35,16 +36,22 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const mainDivStyle = {
-  margin: "0 auto",
-  maxWidth: "1200px"
-};
-
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+
+    const rootElement = document.getElementById('root');
+    rootElement.dataset.bsTheme = theme;
+    rootElement.classList.remove("bg-light", "bg-dark");
+    rootElement.classList.add(`bg-${theme}`);
+  }, [theme])
+
   return (
     <ApolloProvider client={client}>
       <div className='flex-column justify-flex-start min-100-vh'></div>
-      <NavigationBar/>
+      <NavigationBar theme={theme} setTheme={setTheme}/>
       <div className='container'>
         <Outlet />
       </div>
