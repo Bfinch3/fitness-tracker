@@ -9,7 +9,6 @@ const mainDivStyle = {
 export default function UserPage() {
     return (
         <div className="d-flex gap-2 p-2 align-items-start flex-wrap" style={ mainDivStyle }>
-        <NavigationBar />
         <WorkoutList/>
         <Aside/>
 </div>
