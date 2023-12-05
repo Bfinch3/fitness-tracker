@@ -1,13 +1,13 @@
-const { Workout, Member } = require("../models");
+const { Workout, User } = require("../models");
 const mongoose = require("mongoose");
 
 module.exports = {
   //create new workout
   async createWorkout(req, res) {
     try {
-      const { memberId } = req.body;
+      const { userId } = req.body;
       const workout = await Workout.create(req.body);
-      const member = await Member.findByIdAndUpdate(memberId, {
+      const user = await User.findByIdAndUpdate(userId, {
         $push: { workouts: workout._id },
       });
       res.json(workout);
@@ -16,7 +16,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  //Get all workouts
+  //Get all workout
   async getWorkouts(req, res) {
     try {
       const workouts = await Workout.find();
@@ -40,11 +40,11 @@ module.exports = {
   //update reaction
   async createReaction(req, res) {
     const { workoutId } = req.params;
-    const { reactionBody, membername, createdAt, memberId } = req.body;
+    const { reactionBody, username, createdAt, userId } = req.body;
     try {
       const workout = await Workout.findByIdAndUpdate(
         workoutId,
-        { $push: { reactions: { reactionBody, membername, createdAt } } },
+        { $push: { reactions: { reactionBody, username, createdAt } } },
         { new: true }
       );
       if (!workout) {
@@ -52,10 +52,11 @@ module.exports = {
       }
       res.status(201).json(workout.reactions[workout.reactions.length - 1]);
     } catch (err) {
-      console.err(err);
-      res.status(500).json({ message: "Internal server err" });
+      console.error(err); // <-- Corrected line
+      res.status(500).json({ message: "Internal server error" });
     }
   },
+  
   //update workout
   async updateWorkout(req, res) {
     try {
@@ -76,15 +77,15 @@ module.exports = {
   // Find and delete workout by ID
   async deleteWorkout(req, res) {
     try {
-      const memberId = req.params.memberId;
+      const userId = req.params.userId;
       const workoutId = req.params.workoutId;
       const deletedWorkout = await Workout.findByIdAndDelete(workoutId);
       if (!deletedWorkout) {
         return res.status(404).json({ message: "Workout not found" });
       }
-      // Remove Workout ID from members Workout array
-      const member = await Member.findByIdAndUpdate(
-        memberId,
+      // Remove workout ID from users workout array
+      const user = await User.findByIdAndUpdate(
+        userId,
         { $pull: { workouts: workoutId } },
         { new: true }
       );
@@ -105,9 +106,9 @@ module.exports = {
         { new: true }
       );
       if (!workout) {
-        return res.status(404).json({ message: "Member not found" });
+        return res.status(404).json({ message: "User not found" });
       }
-      res.json({ message: "Reaction removed", Workout });
+      res.json({ message: "Reaction removed", workout });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Internal server error" });

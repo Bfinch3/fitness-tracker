@@ -10,7 +10,7 @@ const reactionSchema = new mongoose.Schema({
     required: true,
     maxlength: 280,
   },
-  membername: {
+  username: {
     type: String,
     required: true,
   },
@@ -22,6 +22,8 @@ const reactionSchema = new mongoose.Schema({
     },
   },
 });
+const Reaction = mongoose.model('Reaction', reactionSchema);
+module.exports = Reaction;
 // Workout Schema
 const workoutSchema = new mongoose.Schema({
   workoutText: {
@@ -36,13 +38,13 @@ const workoutSchema = new mongoose.Schema({
       return new Date(timestamp).toISOString();
     },
   },
-membername: {
+username: {
     type: String,
     required: true,
   },
-  reactions: [reactionSchema], 
+  reactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reaction' }]
 });
-//virtual reactionCount
+// virtual reactionCount
 workoutSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });

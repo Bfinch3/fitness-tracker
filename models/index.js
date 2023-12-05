@@ -1,4 +1,4 @@
-const Member = require('./member');
+const User = require('./user');
 const Workout = require('./workout');
 
-module.exports = { Member, Workout };
+module.exports = { User, Workout };
