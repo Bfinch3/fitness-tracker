@@ -14,7 +14,7 @@ import './index.css'
 
 import App from './App.jsx';
 import Homepage from './pages/homepage';
-import MemberPage from './pages/memberpage';
+import UserPage from './pages/userpage';
 import ErrorPage from './pages/ErrorPage';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         element: <Homepage />
       }, 
       {
-        path: '/memberpage',
-        element: <MemberPage />
+        path: '/userpage',
+        element: <UserPage />
       },
       {
         path: '/workout',
