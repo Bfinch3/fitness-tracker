@@ -14,7 +14,7 @@ import './index.css'
 
 import App from './App.jsx';
 import Homepage from './pages/homepage';
-import UserPage from './pages/userpage';
+import UserPage from '../src/pages/Userpage.jsx';
 import ErrorPage from './pages/ErrorPage';
 import WorkoutPage from './pages/WorkoutPage.jsx';
 
