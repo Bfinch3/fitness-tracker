@@ -10,7 +10,7 @@ const reactionSchema = new mongoose.Schema({
     required: true,
     maxlength: 280,
   },
-  member: {
+  user: {
     type: String,
     required: true,
   },
@@ -36,7 +36,7 @@ const workoutSchema = new mongoose.Schema({
       return new Date(timestamp).toISOString();
     },
   },
-member: {
+user: {
     type: String,
     required: true,
   },

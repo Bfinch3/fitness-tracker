@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 // member schema
-const memberSchema = new mongoose.Schema({
-  member: {
+const userSchema = new mongoose.Schema({
+  user: {
     type: String,
     unique: false,
     required: true,
@@ -30,9 +30,9 @@ const memberSchema = new mongoose.Schema({
   }],
 });
 //virtual friendCount
-memberSchema.virtual('friendCount').get(function() {
+userSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
-const Member = mongoose.model("Member", memberSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Member;
+module.exports = User;
