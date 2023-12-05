@@ -1,3 +1,5 @@
+// this feeds WorkoutPage
+
 import WorkoutLinks from "./WorkoutLinks";
 import CommentsSection from "./CommentsSection";
 

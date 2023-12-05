@@ -24,6 +24,7 @@ const reactionSchema = new mongoose.Schema({
 });
 const Reaction = mongoose.model('Reaction', reactionSchema);
 module.exports = Reaction;
+
 // Workout Schema
 const workoutSchema = new mongoose.Schema({
   workoutText: {

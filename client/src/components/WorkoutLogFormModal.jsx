@@ -1,12 +1,39 @@
-import React, { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+import { ADD_WORKOUT } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 const WorkoutLogFormModal = ({ show, onHide }) => {
-  const [workoutType, setWorkoutType] = useState('');
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [notes, setNotes] = useState('');
+  const [workoutType, setWorkoutType] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [notes, setNotes] = useState("");
 
+  const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Perform any necessary validation or data processing here
+    try {
+      const { data } = await addWorkout({
+        variables: {
+          workoutType,
+          title,
+          url,
+          notes,
+        },
+      });
+
+      setWorkoutType("");
+      setTitle("");
+      setUrl("");
+      setNotes("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  // Close the modal after submitting
+  // onHide();
   const handleWorkoutTypeChange = (event) => {
     setWorkoutType(event.target.value);
   };
@@ -22,16 +49,6 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
   const handleNotesChange = (event) => {
     setNotes(event.target.value);
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Perform any necessary validation or data processing here
-    
-    // Close the modal after submitting
-    onHide();
-  };
-
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
@@ -42,14 +59,34 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="workoutType">
             <Form.Label>Workout Type</Form.Label>
-            <Form.Control as="select" value={workoutType} onChange={handleWorkoutTypeChange}>
+            <Form.Select size="sm" value={workoutType} onChange={handleWorkoutTypeChange}>
+                <option>Strength</option>
+                <option>Meditation</option>
+                <option>Yoga</option>
+                <option>Cardio</option>
+                <option>Cycling</option>
+                <option>Outdoor</option>
+                <option>Running</option>
+                <option>Walking</option>
+                <option>Stretching</option>
+            </Form.Select>
+            {/* <Form.Control
+              as="select"
+              value={workoutType}
+              onChange={handleWorkoutTypeChange}
+            > */}
+            
               {/* Options... */}
-            </Form.Control>
+            {/* </Form.Control> */}
           </Form.Group>
 
           <Form.Group controlId="title">
             <Form.Label>Title</Form.Label>
-            <Form.Control type="text" value={title} onChange={handleTitleChange} />
+            <Form.Control
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            />
           </Form.Group>
 
           <Form.Group controlId="url">
@@ -59,7 +96,12 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
 
           <Form.Group controlId="notes">
             <Form.Label>Notes</Form.Label>
-            <Form.Control as="textarea" rows={3} value={notes} onChange={handleNotesChange} />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={notes}
+              onChange={handleNotesChange}
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit">
