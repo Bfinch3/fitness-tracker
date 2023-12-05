@@ -16,7 +16,7 @@ import App from './App.jsx';
 import Homepage from './pages/homepage';
 import UserPage from './pages/UserPage.jsx';
 import ErrorPage from './pages/ErrorPage';
-import WorkoutPage from './pages/WorkoutPage.jsx';
+import WorkoutPage from './pages/WorkoutPage';
 
 const router = createBrowserRouter([
   {
