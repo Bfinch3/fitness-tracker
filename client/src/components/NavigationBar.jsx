@@ -1,10 +1,18 @@
-import React from 'react';
+import ThemeToggler from './ThemeToggler';
 
-function NavigationBar() {
+function NavigationBar({ theme, setTheme }){
+
+  const navColor = {
+    backgroundColor: theme == "light" ? "#0d6efd" : "#0a54c4"
+  };
+
   return (
-    <nav className="navbar bg-primary navbar-expand-md" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-md" style={navColor} data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">Fitness Tracker</a>
+        <a className="navbar-brand" href="/">
+          <img src="/assets/images/logo/32.png"></img>
+          Fitness Tracker
+        </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -17,9 +25,7 @@ function NavigationBar() {
               <a className="nav-link" href="#">Settings</a>
             </li>
           </ul>
-          <button className="btn btn-dark">
-            <i className="fa-solid fa-moon"></i>
-          </button>
+          <ThemeToggler theme={theme} setTheme={setTheme}/>
         </div>
       </div>
     </nav>
