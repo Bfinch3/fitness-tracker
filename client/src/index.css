@@ -30,3 +30,7 @@ nav {
 .aside {
   max-width: 3in;
 }
+
+#theme-toggler-icon {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}

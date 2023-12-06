@@ -1,8 +1,14 @@
 import SearchBar from './SearchBar';
+import ThemeToggler from './ThemeToggler';
 
-function NavigationBar(){
+function NavigationBar({ theme, setTheme }){
+
+  const navColor = {
+    backgroundColor: theme == "light" ? "#0d6efd" : "#0a54c4"
+  };
+
   return (
-    <nav className="navbar bg-primary navbar-expand-md" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-md" style={navColor} data-bs-theme="dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           <img src="/assets/images/logo/32.png"></img>
@@ -20,10 +26,8 @@ function NavigationBar(){
               <a className="nav-link" href="#">Settings</a>
             </li>
           </ul>
-          <SearchBar/>
-          <button className="btn btn-dark">
-            <i className="fa-solid fa-moon"></i>
-          </button>
+          <SearchBar theme={theme}/>
+          <ThemeToggler theme={theme} setTheme={setTheme}/>
         </div>
       </div>
     </nav>

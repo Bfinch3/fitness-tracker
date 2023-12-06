@@ -1,5 +1,13 @@
-function WorkoutItem({ title, description, tags }) {
+// these are the summary workout cards that appear on the workoutlist
+
+const style = {
+  textDecoration: "none"
+};
+
+//summary needs to include type, title, and notes
+function WorkoutSummary({ title, description, tags }) {
   return (
+    <a href="" style={style}>
     <div className="card workout-item">
       <div className="card-body">
         <h5 className="card-title d-flex flex-wrap gap-2">
@@ -11,7 +19,8 @@ function WorkoutItem({ title, description, tags }) {
         { description }
       </div>
     </div>
+    </a>
   );
 }
 
-export default WorkoutItem;
+export default WorkoutSummary;

@@ -1,5 +1,5 @@
 import DropdownFilter from "./DropdownFilter";
-import WorkoutItem from "./WorkoutItem";
+import WorkoutItem from "./WorkoutSummary";
 
 function WorkoutList() {
   const strechingTags = [
