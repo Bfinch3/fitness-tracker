@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Young+Serif&display=swap');
+
 :root {
   --accent-color: #bcd9e6;
 
@@ -33,4 +35,78 @@ nav {
 
 #theme-toggler-icon {
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+#homepage-main-hero {
+  background: rgb(13,110,253);
+  background: radial-gradient(circle at left, rgba(13,110,253,0.9640231092436975) 0%, rgba(13,110,253,0) 100%),
+  radial-gradient(circle at right, rgba(255,238,137,0.5046393557422969) 0%, rgba(255,238,137,0) 100%);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.brand-image {
+  filter: brightness(1.2) drop-shadow(0 0 16px rgba(0, 0, 0, 0.5));
+}
+
+.brand-title {
+  font-size: 6rem;
+  z-index: 5;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.auth-form-size {
+  width: 18rem;
+}
+
+@media (max-width: 1133px) {
+  .brand-image {
+    width: 400px;
+  }
+
+  .brand-title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 993px) {
+  .brand-image {
+    width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xs-flex-column {
+    flex-direction: column;
+  }
+
+  .xs-text-center {
+    text-align: center;
+  }
+
+  #homepage-main-hero {
+    background: radial-gradient(circle at top, rgba(13,110,253,0.9640231092436975) 0%, rgba(13,110,253,0) 100%),
+    radial-gradient(circle at bottom, rgba(255,238,137,0.5046393557422969) 0%, rgba(255,238,137,0) 100%);
+  }
+
+  .auth-form-size {
+    width: 100%
+  }
+
+  .md-w-100 {
+    width: 100%;
+  }
+}
+
+d-grid {
+  display: grid;
+}
+
+.layer {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.auth-carousel {
+  transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
