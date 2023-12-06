@@ -17,11 +17,10 @@ const commentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: function (timestamp) {
-      return new Date(timestamp).toISOString();
+    get: (timestamp) => dateFormat(timestamp),
     },
   },
-});
+  );
 
 const Comment = mongoose.model("Comment", commentSchema);
 module.exports = Comment;
@@ -63,9 +62,7 @@ const workoutSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: function (timestamp) {
-      return new Date(timestamp).toISOString();
-    },
+    get: (timestamp) => dateFormat(timestamp),
   },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
