@@ -10,6 +10,7 @@ const profilePictureStyle = {
 
 function Workout({ title, type, links, comments }) {
 
+  
   return (
     <div className="card flex-grow-1 box-shadow col-7">
       <div className="card-header">
