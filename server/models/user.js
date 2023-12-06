@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
+const {Schema , model } = require("mongoose");
+const bcrypt = require('bcrypt');
 // user schema
-const userSchema = new mongoose.Schema({
-  username: {
+const userSchema = new Schema(
+  {
+  user: {
     type: String,
     unique: false,
     required: true,
@@ -19,9 +21,36 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
-  workouts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Workout" }],
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  workouts:[{
+    type: String,
+    unique: false,
+    trim:true,
+  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+
+  reactions:[{
+    type: String,
+    unique: false,
+    trim: true,
+  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  friends: [{
+    type: String,
+    unique: false,
+    trim: true,
+  }],
 });
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
 // virtual friendCount
 userSchema.virtual("friendCount").get(function () {
   return this.friends.length;

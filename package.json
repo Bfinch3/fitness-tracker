@@ -2,26 +2,24 @@
   "name": "fitnesstracker",
   "version": "1.0.0",
   "description": "an apllication to track your favorite workouts",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
+    "start": "node server --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^5.3.2",
-    "express": "^4.18.2",
-    "graphql": "^16.8.1",
-    "mongoose": "^8.0.2",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.9.1"
-  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
 }
+
+
+  
+ 
+

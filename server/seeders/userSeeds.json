@@ -1,8 +1,50 @@
 [
     {
-        "name": "Tim",
+        "user": "Tim",
         "email": "tim@gmail.com",
-        "password": "pass1234"
+        "password": "pass1234",
+            
+        "workouts": [
+            "leg press",
+            "yoga",
+            "upperbody"
+
+        ],
+        "reactions": "I like those workouts",
+        "friends":""
+    },
+    {
+        "user": "Brian Kernighan",
+        "email": "bkernighan@techfriends.dev",
+        "password": "password01",
+        "workouts": [
+            "leg press",
+            "yoga",
+            "upperbody"
+        ],
+        "reactions": "I like those workouts",
+        "friends":""
+    },
+    {
+        "user": "Edward V. Berard",
+        "email": "evberard@techfriends.dev",
+        "password": "password05",
+        "workouts": "leg press",
+        "reactions": "I like those workouts",
+        "friends":""
+    },
+    {
+        "user": "Alan Kay",
+        "email": "akay@techfriends.dev",
+        "password":"password06",
+        "workouts": [
+            "leg press",
+            "yoga",
+            "upperbody"
+        ],
+        "reactions": "I like those workouts",
+        "friends":""
     }
+
     
 ]
