@@ -52,9 +52,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // virtual friendCount
-userSchema.virtual('friendCount').get(function() {
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
-const User = model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

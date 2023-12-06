@@ -1,13 +1,11 @@
-const {Schema, model} = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
-// Reaction Schema 
-const reactionSchema = new Schema(
-  {
-  reactionId: {
-     type: String, //mongoose.Schema.Types.ObjectId,
-    // default: () => new mongoose.Types.ObjectId(),
+const mongoose = require("mongoose");
+// Comment Schema
+const commentSchema = new mongoose.Schema({
+  commentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(),
   },
-  reactionBody: {
+  commentBody: {
     type: String,
     required: true,
     maxlength: 280,
@@ -22,32 +20,55 @@ const reactionSchema = new Schema(
     get: (timestamp) => dateFormat(timestamp),
     },
   },
+});
 
-);
-const Reaction = model('Reaction', reactionSchema);
-module.exports = Reaction;
+const Comment = mongoose.model("Comment", commentSchema);
+module.exports = Comment;
 
 // Workout Schema
-const workoutSchema = new Schema({
+const workoutSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  workoutTitle: {
+    type: String,
+    required: true,
+    maxlength: 280,
+  },
   workoutText: {
     type: String,
     required: true,
     maxlength: 280,
+  },
+  workoutType: {
+    type: String,
+    enum: [
+      "Strength",
+      "Meditation",
+      "Yoga",
+      "Cardio",
+      "Cycling",
+      "Outdoor",
+      "Running",
+      "Walking",
+      "Stretching",
+    ],
+    required: true,
+  },
+  url: {
+    type: String,
   },
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-
-userId: { type: Schema.Types.ObjectId, ref: 'User'},
-    
-  
-reactions:[{ type: Schema.Types.ObjectId, ref: 'Reaction' }]
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
-// virtual reactionCount
-workoutSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
+// virtual commentCount
+workoutSchema.virtual("commentCount").get(function () {
+  return this.comments.length;
 });
-const Workout = model('Workout', workoutSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
 module.exports = Workout;
