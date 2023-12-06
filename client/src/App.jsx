@@ -56,7 +56,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className='flex-column justify-flex-start min-100-vh'></div>
       <NavigationBar theme={theme} setTheme={setTheme}/>
-      <div className='container'>
+      <div id="main-div" className='container'>
         <Outlet />
       </div>
     </ApolloProvider>
