@@ -23,8 +23,9 @@ export default function Homepage() {
     <div id="homepage-main-hero">       
       <div className="d-flex py-3 md-py-3 gap-3 align-items-center xs-flex-column container">
         <div className="flex-grow-1 d-grid">
-          <div className="layer xs-text-center">
-            <img src="assets/images/logo/512.png" className="brand-image"/>
+          <div className="layer xs-text-center d-grid">
+            <img src="assets/images/logo/512.png" className="brand-image-glow layer"/>
+            <img src="assets/images/logo/512.png" className="brand-image layer"/>
           </div>
           <div className="text-white layer d-flex flex-column-reverse brand-title">
             <div className="">Fitness Tracker</div>
