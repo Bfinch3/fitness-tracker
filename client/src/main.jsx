@@ -13,8 +13,8 @@ import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 import './index.css'
 
 import App from './App.jsx';
-import Homepage from './pages/homepage';
-import UserPage from './pages/UserPage.jsx';
+import Homepage from './pages/Homepage';
+import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
 import WorkoutPage from './pages/WorkoutPage';
 
