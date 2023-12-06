@@ -20,7 +20,7 @@ const commentSchema = new mongoose.Schema({
     get: (timestamp) => dateFormat(timestamp),
     },
   },
-);
+  );
 
 const Comment = mongoose.model("Comment", commentSchema);
 module.exports = Comment;
