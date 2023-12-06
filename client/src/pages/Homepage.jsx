@@ -11,3 +11,5 @@ export default function Homepage() {
       </div>
     );
 }
+
+//add in styling, graphic, logo
