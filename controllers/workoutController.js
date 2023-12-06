@@ -1,7 +1,7 @@
 // const { Workout, Member } = require("../models");
 // const mongoose = require("mongoose");
-const { Workout, User } = require("../server/models");
-const mongoose = require("mongoose");
+// const { Workout, User } = require("../server/models");
+// const mongoose = require("mongoose");
 
 // module.exports = {
 //   //create new workout

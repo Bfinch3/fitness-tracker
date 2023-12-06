@@ -1,9 +1,11 @@
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 // Reaction Schema 
-const reactionSchema = new mongoose.Schema({
+const reactionSchema = new Schema(
+  {
   reactionId: {
-    type: mongoose.Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
+     type: String, //mongoose.Schema.Types.ObjectId,
+    // default: () => new mongoose.Types.ObjectId(),
   },
   reactionBody: {
     type: String,
@@ -17,15 +19,15 @@ const reactionSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: function (timestamp) {
-      return new Date(timestamp).toISOString();
+    get: (timestamp) => dateFormat(timestamp),
     },
   },
-});
-const Reaction = mongoose.model('Reaction', reactionSchema);
+
+);
+const Reaction = model('Reaction', reactionSchema);
 module.exports = Reaction;
 // Workout Schema
-const workoutSchema = new mongoose.Schema({
+const workoutSchema = new Schema({
   workoutText: {
     type: String,
     required: true,
@@ -34,20 +36,17 @@ const workoutSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: function (timestamp) {
-      return new Date(timestamp).toISOString();
-    },
+    get: (timestamp) => dateFormat(timestamp),
   },
 
-username: {
-    type: String,
-    required: true,
-  },
-  reactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reaction' }]
+userId: { type: Schema.Types.ObjectId, ref: 'User'},
+    
+  
+reactions:[{ type: Schema.Types.ObjectId, ref: 'Reaction' }]
 });
 // virtual reactionCount
 workoutSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
-const Workout = mongoose.model('Workout', workoutSchema);
+const Workout = model('Workout', workoutSchema);
 module.exports = Workout;

@@ -3,5 +3,21 @@
         "workoutText": "I like this workout!",
         "username": "Frank",
           "createdAt":"{% now 'iso-8601', '' %}"
+    },
+    {
+        "workoutText": "I dont like this workout!",
+        "username": "Tim",
+            "createdAt":"{% now 'iso-8601', '' %}"
+    },
+    {
+        "workoutText": "I like this workout!",
+        "username": "Edward",
+          "createdAt":"{% now 'iso-8601', '' %}"
+    },
+    {
+        "workoutText": "I like this workout!",
+        "username": "Alan",
+          "createdAt":"{% now 'iso-8601', '' %}"
+
     }
 ]

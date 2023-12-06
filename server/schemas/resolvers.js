@@ -1,21 +1,20 @@
-const { User, Workout } = require('../models');
+const { User, Workout, Reaction } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-      user: async () => {
+      users: async () => {
         return User.find();
       },
   
-      user: async (parent, { userId }) => {
-        return User.findOne({ _id: userId });
+      user: async (parent, { user }) => {
+        return User.findOne({ user });
       },
-      workout: async () => {
-        return Workout.find();
+     
+      workout: async (parent, {workoutId}) => {
+        return Workout.findOne({_id: workoutId});
       },
-      workout: async (parent, {userId}) => {
-        return Workout.findOne({_id: userId});
-      },
+  
       // By adding context to our query, we can retrieve the logged in user without specifically searching for them
       me: async (parent, args, context) => {
         if (context.user) {
@@ -53,7 +52,7 @@ const resolvers = {
         addWorkout: async (parent, {userId, workout}, context) => {
           if (context.user){
             return User.findOneAndUpdate(
-              {_id: memeberId},
+              {_id: userId},
               {
                 $addToSet: { workouts: workout },
               },
@@ -67,14 +66,14 @@ const resolvers = {
         },
 
         //This allows us to remove a user
-        reomoveUser: async (parent, args, context) => {
+        removeUser: async (parent, args, context) => {
           if (context.user) {
             return User.findOneAndDelete({_id: context.user._id});
           }
           throw AuthenticationError;
         },
         //this allows us to remove a skill
-        removeSkill: async (parent, { workout}, context) =>{
+        removeWorkout: async (parent, { workout}, context) =>{
           if (context.user) {
             return User.findOneAndUpdate(
               {_id: context.user._id},
