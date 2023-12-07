@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 // Comment Schema
 //make a comment js file and copy code over.
 const commentSchema = new mongoose.Schema({
@@ -19,9 +20,8 @@ const commentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
-    },
   },
-  );
+});
 
 const Comment = mongoose.model("Comment", commentSchema);
 module.exports = Comment;
