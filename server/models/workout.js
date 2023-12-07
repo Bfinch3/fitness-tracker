@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const dateFormat = require("../utils/dateFormat"); 
 // Workout Schema
 const workoutSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+  // name: {
+  //   type: String,
+  //   required: true,
+  // },
   workoutTitle: {
     type: String,
     required: true,
@@ -39,6 +39,11 @@ const workoutSchema = new mongoose.Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User"},
+    
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 // virtual commentCount

@@ -22,41 +22,9 @@ const userSchema = new Schema(
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
-  workouts:[
-    {
-     //[{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
-      workoutTitle: {
-      type: String,
-      required: true,
-      maxlength: 280,
-    },
-      workoutText: {
-      type: String,
-      required: true,
-      maxlength: 280,
-    },
-      workoutType: {
-      type: String,
-      enum: [
-        "Strength",
-        "Meditation",
-        "Yoga",
-        "Cardio",
-        "Cycling",
-        "Outdoor",
-        "Running",
-        "Walking",
-        "Stretching",
-      ],
-      required: true,
-    },
-      createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
-    },
-  }
-],
+  workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
+
+    
  url: {
     type: String,
   },
@@ -65,12 +33,12 @@ const userSchema = new Schema(
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 
   comments:[
     {
         commentId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         default: () => new mongoose.Types.ObjectId(),
       },
         commentBody: {

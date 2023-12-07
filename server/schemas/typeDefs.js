@@ -43,7 +43,7 @@ type Comment {
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWorkout(userId: ID!, workout: String!): User
+    addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, url: String!): Workout
     removeUser: User
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment

@@ -7,7 +7,7 @@ const resolvers = {
       return User.find();
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate("workouts");
     },
     workout: async (parent, { workoutId }) => {
       return Workout.findOne({ _id: workoutId }).populate("comments");
@@ -41,18 +41,28 @@ const resolvers = {
       return { token, user };
     },
     //this allows us to add a new workout
-    addWorkout: async (parent, { userId, workout}, context) => {
+    addWorkout: async (parent, { workoutTitle, workoutText, workoutType, url }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: userId },
+        const workout = await Workout.create({
+          workoutTitle,
+          workoutText,
+          workoutType,
+          url,
+          userId: context.user._id,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
           {
-            $addToSet: { workouts: workout },
+            $addToSet: { workouts: workout._id },
           },
           {
             new: true,
             runValidators: true,
           }
         );
+
+        return workout;
       }
     },
     
