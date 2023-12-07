@@ -67,20 +67,20 @@ const userSchema = new Schema(
   },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 
-  comments:[{
-    type: String,
-    unique: false,
-    trim: true,
-  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-  commentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
-  },
-  commentBody: {
-    type: String,
-    required: true,
-    maxlength: 280,
-  },
+  comments:[
+    {
+        commentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(),
+      },
+        commentBody: {
+        type: String,
+        required: true,
+        maxlength: 280,
+      },
+    }
+  ], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  
   friends: [{
     type: String,
     unique: false,
