@@ -25,13 +25,16 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($memeberId: ID!, $workout: String!) {
-    addWorkout(memberId: $memberId, workout: $workout) {
-      _id
-      name
-      workouts
-    }
+mutation Mutation($workoutTitle: String!, $workoutText: String!, $workoutType: String!, $url: String!) {
+  addWorkout(workoutTitle: $workoutTitle, workoutText: $workoutText, workoutType: $workoutType, url: $url) {
+    workoutTitle
+    workoutText
+    workoutType
+    url
+    createdAt
+    _id
   }
+}
 `;
 
 export const REMOVE_WORKOUT = gql`
@@ -42,4 +45,14 @@ export const REMOVE_WORKOUT = gql`
       workouts
     }
   }
+`;
+
+export const ADD_COMMENT = gql`
+mutation Mutation($commentBody: String!, $workoutId: ID!) {
+  addComment(commentBody: $commentBody, workoutId: $workoutId) {
+    commentBody
+    createdAt
+    _id
+  }
+}
 `;

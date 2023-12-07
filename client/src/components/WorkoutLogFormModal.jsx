@@ -18,9 +18,9 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
       const { data } = await addWorkout({
         variables: {
           workoutType,
-          title,
+          workoutTitle: title,
           url,
-          notes,
+          workoutText: notes
         },
       });
 
