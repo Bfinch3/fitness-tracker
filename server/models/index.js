@@ -1,6 +1,8 @@
 const User = require('./user');
-const {Workout, Reaction} = require('./workout');
+const Workout = require('./workout');
+const Comment = require('./comment')
 
 
 
-module.exports = { User, Workout };
+
+module.exports = { User, Workout, Comment };

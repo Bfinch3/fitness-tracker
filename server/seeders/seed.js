@@ -1,9 +1,9 @@
 const db = require('../config/connection');
-const { User } = require('../models');
+const { User, Workout, Comment } = require('../models');
 const cleanDB = require('./cleanDB');
 const userSeeds = require('./userSeeds.json');
 const workoutSeeds = require('./workoutSeeds.json');
-const reactionSeeds = require('./reactionSeeds.json')
+const commentSeeds = require('./commentSeeds.json')
 
 db.once('open', async () => {
   try {

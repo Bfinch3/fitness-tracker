@@ -1,4 +1,4 @@
-const { User, Workout, Reaction } = require('../models');
+const { User, Workout, Comment } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -12,7 +12,7 @@ const resolvers = {
       },
      
       workout: async (parent, {workoutId}) => {
-        return Workout.findOne({_id: workoutId});
+        return Workout.findOne({_id: workoutId}).populate("comments");
       },
   
       // By adding context to our query, we can retrieve the logged in user without specifically searching for them
@@ -83,6 +83,33 @@ const resolvers = {
           }
           throw AuthenticationError;
         },
+        addComment: async (parent, {
+          commentBody, workoutId}, context) =>{
+            if (context.user) {
+            const comment = await Comment.create({ commentBody, username:context.user.username });
+            const workout = await Workout.findOneAndUpdate(
+              {_id: workoutId},
+              {$addToSet: { comments: comment._id } },
+              {new: true}
+            );
+            return comment
+          }
+          throw AuthenticationError;
+
+          },
+        removeComment: async (parent, {
+          commentId, workoutId
+        },context) =>{
+          const comment = await Comment.deleteOne({ commentId});
+            const workout = await Workout.findOneAndUpdate(
+              {_id: workoutId},
+              {$pull: { comments: commentId} },
+              {new: true}
+            );
+            return workout
+
+        }
+        
     },
 };
 

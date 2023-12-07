@@ -11,12 +11,12 @@ const typeDefs = `
     workoutText: String
     createdAt: String
     userId: User
-    reactions: [Reaction]
+    comment: [Comment]
   }
-  type Reaction {
+  type Comment {
     _id: ID
-    reactionId: String
-    reactionBody: String
+    commentId: String
+    commentBody: String
     username: String
     createdAt: String
   }
@@ -32,6 +32,7 @@ const typeDefs = `
     workout(workoutId: ID!): Workout
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
     
+    
     me: User
   }
 
@@ -42,6 +43,8 @@ const typeDefs = `
     addWorkout(userId: ID!, workout: String!): User
     removeUser: User
     removeWorkout(workout: String!): User
+    addComment(commentBody: String!, workoutId: ID!): Comment
+    removeComment(commentId: ID!, workoutId: ID!): Workout
   }
 `;
 
