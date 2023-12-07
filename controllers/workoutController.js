@@ -46,13 +46,13 @@
 //     try {
 //       const workout = await Workout.findByIdAndUpdate(
 //         workoutId,
-//         { $push: { reactions: { reactionBody, membername, createdAt } } },
+//         { $push: { comments: { reactionBody, membername, createdAt } } },
 //         { new: true }
 //       );
 //       if (!workout) {
 //         return res.status(404).json({ message: "Workout not found" });
 //       }
-//       res.status(201).json(workout.reactions[workout.reactions.length - 1]);
+//       res.status(201).json(workout.comments[workout.comments.length - 1]);
 //     } catch (err) {
 //       console.err(err);
 //       res.status(500).json({ message: "Internal server err" });
@@ -103,7 +103,7 @@
 //       const reactionId = req.params.reactionId;
 //       const workout = await Workout.findByIdAndUpdate(
 //         workoutId,
-//         { $pull: { reactions: reactionId } },
+//         { $pull: { comments: reactionId } },
 //         { new: true }
 //       );
 //       if (!workout) {
