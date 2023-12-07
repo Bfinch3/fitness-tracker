@@ -41,7 +41,7 @@ const Signup = () => {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="auth-form-size box-shadow">
       <Card.Body>
         <Card.Title>Signup Here!</Card.Title>
         <Form onSubmit={handleFormSubmit}>

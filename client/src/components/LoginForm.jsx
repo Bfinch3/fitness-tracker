@@ -46,7 +46,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="box-shadow auth-form-size">
       <Card.Body>
         <Card.Title>Login</Card.Title>
         <Form onSubmit={handleFormSubmit}>
