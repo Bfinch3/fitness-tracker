@@ -9,7 +9,6 @@ import { useMutation } from "@apollo/client";
 
 const LoginForm = (props) => {
   const [formState, setFormState] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -41,7 +40,6 @@ const LoginForm = (props) => {
 
     // clear form values
     setFormState({
-      username: "",
       email: "",
       password: "",
     });
