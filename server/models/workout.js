@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const dateFormat = require("../utils/dateFormat"); 
 // Workout Schema
 const workoutSchema = new mongoose.Schema({
   name: {
