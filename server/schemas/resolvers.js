@@ -18,7 +18,7 @@ const resolvers = {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError();
+      throw AuthenticationError;
     },
   },
   Mutation: {
@@ -31,11 +31,11 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        throw new AuthenticationError();
+        throw AuthenticationError;
       }
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
-        throw new AuthenticationError();
+        throw AuthenticationError;
       }
       const token = signToken(user);
       return { token, user };
@@ -61,7 +61,7 @@ const resolvers = {
       if (context.user) {
         return User.findOneAndDelete({ _id: context.user._id });
       }
-      throw new AuthenticationError();
+      throw AuthenticationError;
     },
     //this allows us to remove a skill
     removeWorkout: async (parent, { workout }, context) => {
@@ -72,7 +72,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError();
+      throw AuthenticationError;
     },
     addComment: async (parent, { commentBody, workoutId }, context) => {
       if (context.user) {
@@ -87,7 +87,7 @@ const resolvers = {
         );
         return comment;
       }
-      throw new AuthenticationError();
+      throw AuthenticationError;
     },
     removeComment: async (parent, { commentId, workoutId }, context) => {
       const comment = await Comment.deleteOne({ _id: commentId });
