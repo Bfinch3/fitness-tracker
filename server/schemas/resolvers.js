@@ -41,7 +41,7 @@ const resolvers = {
       return { token, user };
     },
     //this allows us to add a new workout
-    addWorkout: async (parent, { userId, workout }, context) => {
+    addWorkout: async (parent, { userId, workout}, context) => {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: userId },
@@ -55,6 +55,8 @@ const resolvers = {
         );
       }
     },
+    
+  
 
     //This allows us to remove a user
     removeUser: async (parent, args, context) => {
@@ -74,11 +76,12 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    //This allows us to add a comment
     addComment: async (parent, { commentBody, workoutId }, context) => {
       if (context.user) {
         const comment = await Comment.create({
           commentBody,
-          username: context.user.username,
+          name: context.user.name,
         });
         const workout = await Workout.findOneAndUpdate(
           { _id: workoutId },
@@ -89,6 +92,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    //This allows us to remove a comment
     removeComment: async (parent, { commentId, workoutId }, context) => {
       const comment = await Comment.deleteOne({ _id: commentId });
       const workout = await Workout.findOneAndUpdate(
