@@ -11,10 +11,14 @@
 html, body {
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 #root {
-  width: 100vw;
   min-height: 100vh;
 
   display: flex;
@@ -127,4 +131,8 @@ d-grid {
 
 .auth-carousel {
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.markdown-view img {
+  max-width: 100%;
 }
