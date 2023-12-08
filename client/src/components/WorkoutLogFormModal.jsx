@@ -11,7 +11,7 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
   const [notes, setNotes] = useState("");
 
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
-    refetchQueries: [QUERY_WORKOUTS, 'getWorkouts']
+    refetchQueries: [QUERY_WORKOUTS]
   });
 
 

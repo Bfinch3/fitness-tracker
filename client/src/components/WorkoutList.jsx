@@ -1,42 +1,16 @@
 import DropdownFilter from "./DropdownFilter";
 import WorkoutSummary from "./WorkoutSummary";
 import { QUERY_WORKOUTS } from "../utils/queries";
-import { useState } from "react";
 import { useQuery } from "@apollo/client";
 
 import Auth from "../utils/auth";
 
 function WorkoutList() {
-const workoutListData = [];
-//  const workoutListData = [{ QUERY_WORKOUTS }];
 
  const { loading, data } = useQuery(QUERY_WORKOUTS, {
   variables: { userId: Auth.getProfile().data._id },
   
 });
-//     {
-//         _id: 1, 
-//         Type: "Yoga",
-//         Title: "30 min Yoga Flow",
-//         Url: "https://members.onepeloton.com/classes/yoga?modal=classDetailsModal&classId=5b0c7818d280400aaa4a83b1d0ea0c74",
-//         Notes: "I only did the first half, but there was a flowing section that was like dancing that I loved. A lot of the movements were fluid. Also, the music was celebrating the 75th anniversary of Atlantic Records."
-//     },
-//     {
-//       _id: 2,
-//         Type: "Meditation",
-//         Title: "10 min Courage Meditation",
-//         Url: "https://members.onepeloton.com/classes/meditation?modal=classDetailsModal&classId=02d7567767b54bb9ab2027325180c10e",
-//         Notes: "Included oceanic breathing and the mini-self avatar entering through your third eye and sitting on a golden throne in your heart."
-//     },
-//     {
-//         _id: 3, 
-//         Type: "Cycling",
-//         Title: "30 min 90s Rock Ride",
-//         Url: "https://members.onepeloton.com/classes/cycling?modal=classDetailsModal&classId=5e133499066d40fd85f14d318ab9373f",
-//         Notes: "Great playlist including Pearl Jam, Third Eye Blind, Metallica, Counting Crows, Better Than Ezra, Smashing Pumpkins!"
-//     }
-// ]
-console.log(data);
 
   return (
     <div className="card flex-grow-1 box-shadow col-7">
@@ -49,11 +23,6 @@ console.log(data);
       </div>
       <div className="card-body">
         <div className="d-flex flex-column gap-3">
-          {/* // get array of workouts from loggedin user 
-          include workout ID
-          type, title, notes
-
-          */}
           {(data?.workouts??[]).map((workout) => (
             <WorkoutSummary
               key={workout.userId}
