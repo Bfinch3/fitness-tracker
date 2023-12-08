@@ -63,6 +63,7 @@ function App() {
       <Routes>
               <Route path="/user" element={<UserPage />} />
       </Routes>
+
       </div>
     </ApolloProvider>
   );

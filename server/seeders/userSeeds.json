@@ -10,8 +10,8 @@
             "upperbody"
 
         ],
-        "reactions": "I like those workouts",
-        "friends":""
+        "comments": "I like those workouts",
+        "friends":"Edward V. Berard"
     },
     {
         "name": "Brian Kernighan",
@@ -22,7 +22,7 @@
             "yoga",
             "upperbody"
         ],
-        "reactions": "I like those workouts",
+        "comments": "I like those workouts",
         "friends":""
     },
     {
@@ -30,7 +30,7 @@
         "email": "evberard@techfriends.dev",
         "password": "password05",
         "workouts": "leg press",
-        "reactions": "I like those workouts",
+        "comments": "I like those workouts",
         "friends":""
     },
     {
@@ -42,7 +42,7 @@
             "yoga",
             "upperbody"
         ],
-        "reactions": "I like those workouts",
+        "comments": "I like those workouts",
         "friends":""
     }
 

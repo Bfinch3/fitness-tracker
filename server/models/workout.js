@@ -1,36 +1,11 @@
 const mongoose = require("mongoose");
-// Comment Schema
-const commentSchema = new mongoose.Schema({
-  commentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId(),
-  },
-  commentBody: {
-    type: String,
-    required: true,
-    maxlength: 280,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-    },
-  },
-  );
-
-const Comment = mongoose.model("Comment", commentSchema);
-module.exports = Comment;
-
+const dateFormat = require("../utils/dateFormat"); 
 // Workout Schema
 const workoutSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
+  // name: {
+  //   type: String,
+  //   required: true,
+  // },
   workoutTitle: {
     type: String,
     required: true,
@@ -64,6 +39,11 @@ const workoutSchema = new mongoose.Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User"},
+    
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 // virtual commentCount

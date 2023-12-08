@@ -19,11 +19,11 @@
 //   .get(getWorkoutById)
 //   .put(updateWorkout)
 //   .delete(deleteWorkout);
-// //routes for reactions
-// router.route('/:workoutId/reactions')
+// //routes for comments
+// router.route('/:workoutId/comments')
 //   .post(createReaction);
 
-// router.route('/:workoutId/reactions/:reactionId')
+// router.route('/:workoutId/comments/:reactionId')
 //   .delete(deleteReaction);
 
 // module.exports = router;

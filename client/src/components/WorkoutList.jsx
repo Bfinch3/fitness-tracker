@@ -1,36 +1,37 @@
 import DropdownFilter from "./DropdownFilter";
-import WorkoutItem from "./WorkoutSummary";
+import WorkoutSummary from "./WorkoutSummary";
+import { QUERY_WORKOUTS } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+
+import Auth from "../utils/auth";
 
 function WorkoutList() {
-  const strechingTags = [
-    {name: "Low Intensity", type: "success"},
-    {name: "Stretching", type: "secondary"}
-  ];
 
-  const runningTags = [
-    {name: "High Intensity", type: "danger"},
-    {name: "Running", type: "secondary"}
-  ];
-
-  const yogaTags = [
-    {name: "Low Intensity", type: "success"},
-    {name: "Yoga", type: "secondary"}
-  ];
+ const { loading, data } = useQuery(QUERY_WORKOUTS, {
+  variables: { userId: Auth.getProfile().data._id },
+  
+});
 
   return (
     <div className="card flex-grow-1 box-shadow col-7">
       <div className="card-header">
         <h4 className="card-title d-flex flex-wrap gap-2 mb-0 mt-1">
-          <span>Your Workouts</span>
+          <span>My Workouts</span>
           <DropdownFilter text="Low Intensity" />
           <DropdownFilter isAdd={true} />
         </h4>
       </div>
       <div className="card-body">
         <div className="d-flex flex-column gap-3">
-          <WorkoutItem title="Stretching" tags={ strechingTags } description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, ullam veritatis fugiat quis nobis eveniet voluptate alias, quaerat asperiores voluptas distinctio ipsa libero. Enim nesciunt vel, vero aliquam maxime velit."/>
-          <WorkoutItem title="Running" tags={ runningTags }  description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, ullam veritatis fugiat quis nobis eveniet voluptate alias, quaerat asperiores voluptas distinctio ipsa libero. Enim nesciunt vel, vero aliquam maxime velit."/>
-          <WorkoutItem title="Yoga" tags={ yogaTags } description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, ullam veritatis fugiat quis nobis eveniet voluptate alias, quaerat asperiores voluptas distinctio ipsa libero. Enim nesciunt vel, vero aliquam maxime velit."/>
+          {(data?.workouts??[]).map((workout) => (
+            <WorkoutSummary
+              key={workout._id}
+              _id={workout._id}
+              type={workout.workoutType}
+              title={workout.workoutTitle}
+              notes={workout.workoutText}
+            />
+          ))}
         </div>
       </div>
     </div>

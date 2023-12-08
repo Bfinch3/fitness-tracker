@@ -1,5 +1,6 @@
 const {Schema , model } = require("mongoose");
 const bcrypt = require('bcrypt');
+const dateFormat = require("../utils/dateFormat"); 
 // user schema
 const userSchema = new Schema(
   {
@@ -21,17 +22,33 @@ const userSchema = new Schema(
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
-  workouts:[{
-    type: String,
-    unique: false,
-    trim:true,
-  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+  workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
 
-  reactions:[{
+    
+ url: {
     type: String,
-    unique: false,
-    trim: true,
-  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+
+  comments:[
+    {
+        commentId: {
+        type: Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(),
+      },
+        commentBody: {
+        type: String,
+        required: true,
+        maxlength: 280,
+      },
+    }
+  ], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  
   friends: [{
     type: String,
     unique: false,

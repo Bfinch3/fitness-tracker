@@ -1,22 +1,22 @@
 [
     {
         "workoutText": "I like this workout!",
-        "username": "Frank",
+        "name": "Frank",
           "createdAt":"{% now 'iso-8601', '' %}"
     },
     {
         "workoutText": "I dont like this workout!",
-        "username": "Tim",
+        "name": "Tim",
             "createdAt":"{% now 'iso-8601', '' %}"
     },
     {
         "workoutText": "I like this workout!",
-        "username": "Edward",
+        "name": "Edward",
           "createdAt":"{% now 'iso-8601', '' %}"
     },
     {
         "workoutText": "I like this workout!",
-        "username": "Alan",
+        "name": "Alan",
           "createdAt":"{% now 'iso-8601', '' %}"
 
     }

@@ -1,45 +1,58 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
-mutation login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    profile {
-      _id
-      name
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        name
+      }
     }
   }
-}
 `;
 
 export const ADD_USER = gql`
-mutation login($username: String! $email: String!, $password: String!) {
-  login(username: $username, email: $email, password: $password) {
-    token
-    user {
-      _id
-      username
+  mutation addUser($name: String!, $email: String!, $password: String!) {
+    addUser(name: $name, email: $email, password: $password) {
+      token
+      user {
+        _id
+        name
+      }
     }
   }
-}
 `;
 
 export const ADD_WORKOUT = gql`
-mutation addWorkout($memeberId: ID!, $workout: String!) {
-  addWorkout(memberId: $memberId, workout: $workout) {
+mutation Mutation($workoutTitle: String!, $workoutText: String!, $workoutType: String!, $url: String!) {
+  addWorkout(workoutTitle: $workoutTitle, workoutText: $workoutText, workoutType: $workoutType, url: $url) {
+    workoutTitle
+    workoutText
+    workoutType
+    url
+    createdAt
     _id
-    name
-    workouts
   }
 }
 `;
 
 export const REMOVE_WORKOUT = gql`
-mutation removeWorkout($workout: String!) {
-  removeWorkout(workout: $workout) {
+  mutation removeWorkout($workout: String!) {
+    removeWorkout(workout: $workout) {
+      _id
+      name
+      workouts
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+mutation Mutation($commentBody: String!, $workoutId: ID!) {
+  addComment(commentBody: $commentBody, workoutId: $workoutId) {
+    commentBody
+    createdAt
     _id
-    name
-    workouts
   }
 }
 `;
