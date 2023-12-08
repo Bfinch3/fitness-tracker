@@ -49,7 +49,6 @@ console.log(data);
     <Card.Body>
       <Card.Text>{workout.workoutType}</Card.Text>
       <Link to={workout.url}>Workout Link</Link>
-      {/* <Card.Text>{workout.url}</Card.Text> */}
       <Card.Text>{workout.workoutText}</Card.Text>
       <div className="my-5">
         <CommentList/>

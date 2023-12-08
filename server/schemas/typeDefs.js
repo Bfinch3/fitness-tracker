@@ -21,7 +21,7 @@ type Workout {
 type Comment {
   _id: ID
   commentBody: String
-  username: String
+  name: String
   createdAt: String
 }
 

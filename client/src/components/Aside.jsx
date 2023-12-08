@@ -1,3 +1,5 @@
+import AddFriendModalLaunch from "./AddFriendModal";
+
 const profilePictureStyle = {
   height: "2in",
   maxHeight: "2in",
@@ -11,15 +13,23 @@ const profilePictureStyle = {
 
 function Aside() {
   return (
-    <div className="card col-5 box-shadow aside overflow-hidden">
+    <><div className="card col-5 box-shadow aside overflow-hidden">
       <div style={profilePictureStyle}></div>
+      <AddFriendModalLaunch/>
       <div className="card-body">
-        <h5 className="card-title">FirstName LastName</h5>
-        <h6 className="card-subtitle text-body-secondary mb-2">City, State, Country</h6>
+        <h5 className="card-title">Name</h5>
+        <h6 className="card-subtitle text-body-secondary mb-2">Date Joined</h6>
 
-        <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione rem consequuntur quaerat tempora dolorum harum nihil aperiam ipsa eaque quos doloribus voluptas vero iusto, porro debitis, placeat maiores dolorem excepturi!</p>
+        <ul className="card-text">My friends:</ul>
+        {/* //map through friend array */}
+        
       </div>
+      
     </div>
+    </>
+    
+    
+    
   );
 }
 
