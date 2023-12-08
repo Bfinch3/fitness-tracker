@@ -1,5 +1,6 @@
 import ThemeToggler from './ThemeToggler';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 function NavigationBar({ theme, setTheme }){
 
@@ -23,9 +24,9 @@ function NavigationBar({ theme, setTheme }){
               <Link className="nav-link" to="/userpage">My Workouts</Link>
             </li>
              {/* Conditionally render the logout link if the user is authenticated */}
-             {isAuthenticated && (
+             {Auth.loggedIn() && (
               <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={onLogout}>Logout</button>
+                <button className="nav-link btn btn-link" onClick={Auth.logout}>Logout</button>
               </li>
             )}
           </ul>
