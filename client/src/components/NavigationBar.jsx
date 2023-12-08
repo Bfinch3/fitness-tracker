@@ -1,4 +1,5 @@
 import ThemeToggler from './ThemeToggler';
+import { Link } from 'react-router-dom';
 
 function NavigationBar({ theme, setTheme }){
 
@@ -19,10 +20,7 @@ function NavigationBar({ theme, setTheme }){
         <div className="collapse navbar-collapse" id="nav-content">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Settings</a>
+              <Link className="nav-link" to="/user">My Workouts</Link>
             </li>
           </ul>
           <ThemeToggler theme={theme} setTheme={setTheme}/>
