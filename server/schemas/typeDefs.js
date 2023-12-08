@@ -52,6 +52,7 @@ type Auth {
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
+    
   }
 `;
 
