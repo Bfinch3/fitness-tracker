@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { ADD_WORKOUT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
+import { QUERY_WORKOUTS } from "../utils/queries";
 
 const WorkoutLogFormModal = ({ show, onHide }) => {
   const [workoutType, setWorkoutType] = useState("");
@@ -9,7 +10,10 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
   const [url, setUrl] = useState("");
   const [notes, setNotes] = useState("");
 
-  const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
+  const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
+    refetchQueries: [QUERY_WORKOUTS]
+  });
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
