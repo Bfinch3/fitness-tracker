@@ -49,11 +49,8 @@ const userSchema = new Schema(
     }
   ], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
   
-  friends: [{
-    type: String,
-    unique: false,
-    trim: true,
-  }],
+  friends: [{ type: Schema.Types.ObjectId, ref: "User"}]
+    
 });
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {

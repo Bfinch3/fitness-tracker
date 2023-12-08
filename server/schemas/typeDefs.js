@@ -6,7 +6,7 @@ type User {
   password: String
   workouts: [String]!
   comments: [String]!
-  friends: [String!]
+  friends: [User]!
 }
 type Workout {
   _id: ID
@@ -25,10 +25,13 @@ type Comment {
   createdAt: String
 }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
+
+
+
+type Auth {
+  token: ID!
+  user: User
+}
 
   type Query {
     users: [User]!
@@ -49,8 +52,7 @@ type Comment {
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
-    addFriend(name: String!): User
-  removeFriend(name: String!): User
+    
   }
 `;
 
