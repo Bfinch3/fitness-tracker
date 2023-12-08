@@ -20,7 +20,7 @@ function NavigationBar({ theme, setTheme }){
         <div className="collapse navbar-collapse" id="nav-content">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/user">My Workouts</Link>
+              <Link className="nav-link" to="/userpage">My Workouts</Link>
             </li>
           </ul>
           <ThemeToggler theme={theme} setTheme={setTheme}/>
