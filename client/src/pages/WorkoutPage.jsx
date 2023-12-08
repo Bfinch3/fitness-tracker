@@ -51,10 +51,10 @@ console.log(data);
       <Link to={workout.url}>Workout Link</Link>
       <Card.Text>{workout.workoutText}</Card.Text>
       <div className="my-5">
-        <CommentList/>
+        <CommentList comments={workout.comments}/>
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm/>
+        <CommentForm workoutID={workout._id}/>
       </div>
     </Card.Body>
   </Card>

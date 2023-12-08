@@ -60,9 +60,9 @@ function App() {
       <div className='flex-column justify-flex-start min-100-vh'></div>
       <NavigationBar theme={theme} setTheme={setTheme}/>
       <div id="main-div" className='container'>
-      <Routes>
+      {/* <Routes>
               <Route path="/userpage" element={<UserPage />} />
-      </Routes>
+      </Routes> */}
       <Outlet />
 
       </div>

@@ -52,6 +52,7 @@ mutation Mutation($commentBody: String!, $workoutId: ID!) {
   addComment(commentBody: $commentBody, workoutId: $workoutId) {
     commentBody
     createdAt
+    commentAuthor
     _id
   }
 }

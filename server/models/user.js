@@ -25,9 +25,9 @@ const userSchema = new Schema(
   workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
 
     
- url: {
-    type: String,
-  },
+//  url: {
+//     type: String,
+//   },
   createdAt: {
     type: Date,
     default: Date.now,
