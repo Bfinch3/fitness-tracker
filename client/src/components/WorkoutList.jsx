@@ -25,8 +25,8 @@ function WorkoutList() {
         <div className="d-flex flex-column gap-3">
           {(data?.workouts??[]).map((workout) => (
             <WorkoutSummary
-              key={workout.userId}
-              _id={workout.userId}
+              key={workout._id}
+              _id={workout._id}
               type={workout.workoutType}
               title={workout.workoutTitle}
               notes={workout.workoutText}

@@ -25,6 +25,7 @@ query Query($userId: ID!) {
       workoutTitle
       workoutType
       workoutText
+      _id
     }
   }
 `
