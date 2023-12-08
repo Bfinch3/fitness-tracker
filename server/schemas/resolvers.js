@@ -12,7 +12,10 @@ const resolvers = {
     workout: async (parent, { workoutId }) => {
       return Workout.findOne({ _id: workoutId }).populate("comments");
     },
-
+    workouts: async (parent, { userId }) => {
+      const params = userId ? { userId } : {};
+      return Workout.find(params).sort({ createdAt: -1 });
+    },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
