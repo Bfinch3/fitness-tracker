@@ -69,8 +69,6 @@ const resolvers = {
       }
     },
     
-  
-
     //This allows us to remove a user
     removeUser: async (parent, args, context) => {
       if (context.user) {

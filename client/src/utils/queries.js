@@ -10,7 +10,7 @@ query Workout($workoutId: ID!) {
       createdAt
       comments {
         createdAt
-        username
+        name
         commentBody
         _id
       }

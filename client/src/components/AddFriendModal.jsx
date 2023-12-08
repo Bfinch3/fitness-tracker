@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+// import {ADD_FRIEND} from "../utils/mutations";
+import { useMutation } from '@apollo/client';
 
 const AddFriendModal = ({ show, onHide }) => {
   const [searchTerm, setSearchTerm] = useState('');
