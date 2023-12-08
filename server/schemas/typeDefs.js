@@ -6,7 +6,7 @@ type User {
   password: String
   workouts: [String]!
   comments: [String]!
-  friends: [String]!
+  friends: [String!]
 }
 type Workout {
   _id: ID
@@ -49,6 +49,8 @@ type Comment {
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
+    addFriend(name: String!): User
+  removeFriend(name: String!): User
   }
 `;
 
