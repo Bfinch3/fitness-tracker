@@ -27,10 +27,12 @@ const testComments = [
   }
 ];
 
+const testText = "### Wow what a workout!\nI ran like Forrest Gump yesterday; I did crosscountry!"
+
 function WorkoutPage() {
   return (
     <div className="d-flex gap-2 p-2 align-items-start flex-wrap" style={ mainDivStyle }>
-      <Workout title="A really good yogo session" comments={testComments} links={links} type="Yoga"/>
+      <Workout title="A really good yogo session" text={testText} comments={testComments} links={links} type="Yoga"/>
     </div>
   )
 }
