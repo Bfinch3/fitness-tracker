@@ -2,48 +2,31 @@
     {
         "name": "Tim",
         "email": "tim@gmail.com",
-        "password": "pass1234",
+        "password": "pass1234"
             
-        "workouts": [
-            "leg press",
-            "yoga",
-            "upperbody"
-
-        ],
-        "comments": "I like those workouts",
-        "friends":"Edward V. Berard"
+      
+       
     },
     {
         "name": "Brian Kernighan",
         "email": "bkernighan@techfriends.dev",
-        "password": "password01",
-        "workouts": [
-            "leg press",
-            "yoga",
-            "upperbody"
-        ],
-        "comments": "I like those workouts",
-        "friends":""
+        "password": "password01"
+      
+        
     },
     {
         "name": "Edward V. Berard",
         "email": "evberard@techfriends.dev",
-        "password": "password05",
-        "workouts": "leg press",
-        "comments": "I like those workouts",
-        "friends":""
+        "password": "password05"
+       
+    
     },
     {
         "name": "Alan Kay",
         "email": "akay@techfriends.dev",
-        "password":"password06",
-        "workouts": [
-            "leg press",
-            "yoga",
-            "upperbody"
-        ],
-        "comments": "I like those workouts",
-        "friends":""
+        "password":"password06"
+     
+
     }
 
     

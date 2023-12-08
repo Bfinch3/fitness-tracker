@@ -1,12 +1,12 @@
 const typeDefs = `
 type User {
   _id: ID
-  name: String
-  email: String
-  password: String
-  workouts: [String]!
-  comments: [String]!
-  friends: [User]!
+  name: String!
+  email: String!
+  password: String!
+  workouts: [String]
+  comments: [String]
+  friends: [User]
 }
 type Workout {
   _id: ID
@@ -39,7 +39,7 @@ type Auth {
     workouts(userId: ID!): [Workout]
     workout(workoutId: ID!): Workout
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
-    
+    friendEmail(searchTerm: String!): [User]
     
     me: User
   }
@@ -52,6 +52,7 @@ type Auth {
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
+    addFriend(friendId: ID!): User
     
   }
 `;

@@ -58,15 +58,18 @@ mutation Mutation($commentBody: String!, $workoutId: ID!) {
 }
 `;
 
-// Add a friend by their name
+// Add a friend by their email
 export const ADD_FRIEND = gql`
-  mutation addFriend($name: String!) {
-    addFriend(name: $name) {
+mutation Mutation($friendId: ID!) {
+  addFriend(friendId: $friendId) {
+    name
+    _id
+    email
+    friends {
       _id
-      name
-      friends
     }
   }
+}
 `;
 
 // Remove a friend by their name

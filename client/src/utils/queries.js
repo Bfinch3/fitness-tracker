@@ -29,3 +29,12 @@ query Query($userId: ID!) {
     }
   }
 `
+
+export const QUERY_EMAIL = gql`
+query Query($searchTerm: String!) {
+    friendEmail(searchTerm: $searchTerm) {
+      name
+      _id
+      email
+    }
+  }`

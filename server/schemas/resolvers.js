@@ -23,6 +23,9 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    friendEmail: async (parent, { searchTerm }) => {
+      return User.find({ email: { $regex: searchTerm, $options: "i" } });
+    }
   },
   Mutation: {
     //this allows us to add new users
@@ -33,6 +36,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
+      console.log(user);
       if (!user) {
         throw AuthenticationError;
       }
@@ -69,36 +73,36 @@ const resolvers = {
       }
     },
     
-    addFriend: async (_, { name }, { user }) => {
+    addFriend: async (_, { friendId }, { user }) => {
       if (!user) throw AuthenticationError;
 
-      const currentUser = await findUserById(user._id);
-      const friendUser = await User.findOne({ name });
+      // const currentUser = await findUserById(user._id);
+      const friendUser = await User.findOneAndUpdate({ _id: user._id }, { $addToSet: { friends: friendId } });
 
-      if (friendUser && !currentUser.friends.includes(friendUser.name)) {
-        currentUser.friends.push(friendUser.name);
-        await currentUser.save();
-      }
+      // if (friendUser && !currentUser.friends.includes(friendUser.name)) {
+      //   currentUser.friends.push(friendUser.name);
+      //   await currentUser.save();
+      // }
 
-      return currentUser;
+      return friendUser;
     },
     
-    removeFriend: async (_, { name }, { user }) => {
-      if (!user) throw AuthenticationError;
+    // removeFriend: async (_, { name }, { user }) => {
+    //   if (!user) throw AuthenticationError;
     
-      const currentUser = await findUserById(user._id);
-      const friendUser = await User.findOne({ name });
+    //   const currentUser = await findUserById(user._id);
+    //   const friendUser = await User.findOne({ name });
     
-      if (currentUser && friendUser) {
-        const friendIndex = currentUser.friends.indexOf(friendUser._id);
-        if (friendIndex !== -1) {
-          currentUser.friends.splice(friendIndex, 1);
-          await currentUser.save();
-        }
-      }
+    //   if (currentUser && friendUser) {
+    //     const friendIndex = currentUser.friends.indexOf(friendUser._id);
+    //     if (friendIndex !== -1) {
+    //       currentUser.friends.splice(friendIndex, 1);
+    //       await currentUser.save();
+    //     }
+    //   }
     
-      return currentUser;
-    },
+      // return currentUser;
+    // },
 
     //This allows us to remove a user
     removeUser: async (parent, args, context) => {
