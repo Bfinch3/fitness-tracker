@@ -22,6 +22,12 @@ function NavigationBar({ theme, setTheme }){
             <li className="nav-item">
               <Link className="nav-link" to="/userpage">My Workouts</Link>
             </li>
+             {/* Conditionally render the logout link if the user is authenticated */}
+             {isAuthenticated && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={onLogout}>Logout</button>
+              </li>
+            )}
           </ul>
           <ThemeToggler theme={theme} setTheme={setTheme}/>
         </div>
