@@ -18,4 +18,13 @@ query Workout($workoutId: ID!) {
       _id
     }
   }`
-  
+
+export const QUERY_WORKOUTS = gql`
+query Query($userId: ID!) {
+    workouts(userId: $userId) {
+      workoutTitle
+      workoutType
+      workoutText
+    }
+  }
+`
