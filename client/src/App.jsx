@@ -61,8 +61,9 @@ function App() {
       <NavigationBar theme={theme} setTheme={setTheme}/>
       <div id="main-div" className='container'>
       <Routes>
-              <Route path="/user" element={<UserPage />} />
+              <Route path="/userpage" element={<UserPage />} />
       </Routes>
+      <Outlet />
 
       </div>
     </ApolloProvider>

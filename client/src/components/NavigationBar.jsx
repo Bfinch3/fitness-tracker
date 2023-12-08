@@ -20,8 +20,14 @@ function NavigationBar({ theme, setTheme }){
         <div className="collapse navbar-collapse" id="nav-content">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/user">My Workouts</Link>
+              <Link className="nav-link" to="/userpage">My Workouts</Link>
             </li>
+             {/* Conditionally render the logout link if the user is authenticated */}
+             {isAuthenticated && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={onLogout}>Logout</button>
+              </li>
+            )}
           </ul>
           <ThemeToggler theme={theme} setTheme={setTheme}/>
         </div>
