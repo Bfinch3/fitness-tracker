@@ -69,6 +69,37 @@ const resolvers = {
       }
     },
     
+    addFriend: async (_, { name }, { user }) => {
+      if (!user) throw AuthenticationError;
+
+      const currentUser = await findUserById(user._id);
+      const friendUser = await User.findOne({ name });
+
+      if (friendUser && !currentUser.friends.includes(friendUser.name)) {
+        currentUser.friends.push(friendUser.name);
+        await currentUser.save();
+      }
+
+      return currentUser;
+    },
+    
+    removeFriend: async (_, { name }, { user }) => {
+      if (!user) throw AuthenticationError;
+    
+      const currentUser = await findUserById(user._id);
+      const friendUser = await User.findOne({ name });
+    
+      if (currentUser && friendUser) {
+        const friendIndex = currentUser.friends.indexOf(friendUser._id);
+        if (friendIndex !== -1) {
+          currentUser.friends.splice(friendIndex, 1);
+          await currentUser.save();
+        }
+      }
+    
+      return currentUser;
+    },
+
     //This allows us to remove a user
     removeUser: async (parent, args, context) => {
       if (context.user) {
