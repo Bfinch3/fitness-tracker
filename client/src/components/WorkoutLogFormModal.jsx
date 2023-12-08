@@ -64,6 +64,7 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
           <Form.Group controlId="workoutType">
             <Form.Label>Workout Type</Form.Label>
             <Form.Select size="sm" value={workoutType} onChange={handleWorkoutTypeChange}>
+                <option>Select One</option>
                 <option>Strength</option>
                 <option>Meditation</option>
                 <option>Yoga</option>

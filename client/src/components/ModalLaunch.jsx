@@ -8,6 +8,11 @@ const ModalLaunch = () => {
   const handleShowModal = () => setShowModal(true);
   const handleHideModal = () => setShowModal(false);
 
+  // conditional that looks for a workout id
+  // pass id in through props
+  // if there is an id, then show the edit modal
+  // if not, show the log modal
+
   return (
     <>
       <Button variant="primary" onClick={handleShowModal}>
