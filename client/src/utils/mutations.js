@@ -57,3 +57,25 @@ mutation Mutation($commentBody: String!, $workoutId: ID!) {
   }
 }
 `;
+
+// Add a friend by their name
+export const ADD_FRIEND = gql`
+  mutation addFriend($name: String!) {
+    addFriend(name: $name) {
+      _id
+      name
+      friends
+    }
+  }
+`;
+
+// Remove a friend by their name
+export const REMOVE_FRIEND = gql`
+mutation RemoveFriend($name: String!) {
+  removeFriend(name: $name) {
+    _id
+    name
+    friends
+  }
+}
+`;

@@ -41,7 +41,7 @@ const CommentForm = ({ workoutId }) => {
 
   return (
     <div>
-      {/* <h4>What are your thoughts on this thought?</h4> */}
+      {/* <h4>What are your workouts on this workout?</h4> */}
 
       {Auth.loggedIn() ? (
         <>
@@ -77,7 +77,7 @@ const CommentForm = ({ workoutId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your workouts. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
