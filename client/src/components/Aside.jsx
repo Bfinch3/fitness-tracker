@@ -1,4 +1,6 @@
-import AddFriendModalLaunch from "./AddFriendModal";
+import { Link } from "react-router-dom";
+// import FriendList from "./components/FriendList";
+
 
 const profilePictureStyle = {
   height: "2in",
@@ -15,11 +17,11 @@ function Aside() {
   return (
     <><div className="card col-5 box-shadow aside overflow-hidden">
       <div style={profilePictureStyle}></div>
-      <AddFriendModalLaunch/>
+      
       <div className="card-body">
         <h5 className="card-title">Name</h5>
         <h6 className="card-subtitle text-body-secondary mb-2">Date Joined</h6>
-
+        {/* <FriendList/> */}
         <ul className="card-text">My friends:</ul>
         {/* //map through friend array */}
         
