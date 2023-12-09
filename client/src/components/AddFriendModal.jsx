@@ -78,7 +78,7 @@ const AddFriendModal = ({ show, onHide }) => {
         <ul>
           {results.map((result) => (
             <div key={result._id}>
-              <h1>{result.email}</h1>
+              <h4>{result.email}</h4>
               <Button onClick={(event) => {addFriend(event, result._id)}}>Follow</Button>
               {/* //addFriend function that run onSubmit, takes in the id and adds the friend */}
             </div>

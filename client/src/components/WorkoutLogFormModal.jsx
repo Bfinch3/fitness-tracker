@@ -32,6 +32,7 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
       setTitle("");
       setUrl("");
       setNotes("");
+      onHide();
     } catch (err) {
       console.error(err);
     }
