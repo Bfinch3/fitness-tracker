@@ -11,6 +11,16 @@ const textComment2 = {
 }
 
 function CommentsSection({ comments }) {
+  if(!comments || !comments.length) {
+    return (
+      <>
+        <h4>No comments yet</h4>
+        {/* This comment is the comment form */}
+        <Comment />
+      </>
+    )
+  }
+
   return (
     <>
       <h4>Comments</h4>
