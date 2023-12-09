@@ -3,6 +3,7 @@ import WorkoutList from '../components/WorkoutList';
 import ModalLaunch from '../components/ModalLaunch';
 import AddFriendModal from '../components/AddFriendModal';
 import AddFriendModalLaunch from '../components/AddFriendModalLaunch';
+import FriendList from '../components/Friend';
 
 const mainDivStyle = {
     margin: "0 auto",
@@ -16,6 +17,7 @@ export default function UserPage() {
         <ModalLaunch/>
         <WorkoutList/>
         <Aside/>
+        <FriendList/>
         <AddFriendModalLaunch/>
 </div>
     );

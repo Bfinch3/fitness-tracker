@@ -38,3 +38,30 @@ query Query($searchTerm: String!) {
       email
     }
   }`
+
+export const QUERY_ME = gql`
+query Query {
+    me {
+      name
+      _id
+      email
+      workouts {
+        workoutTitle
+        workoutText
+        workoutType
+        url
+        createdAt
+        comments {
+          commentBody
+          name
+          createdAt
+        }
+        commentCount
+      }
+      friends {
+        name
+        _id
+        email
+      }
+    }
+  }`
