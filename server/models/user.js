@@ -22,22 +22,35 @@ const userSchema = new Schema(
     unique: true,
     match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
   },
-  workouts:[{
-    type: String,
-    unique: false,
-    trim:true,
-  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }],
+  workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
 
-  comments:[{
-    type: String,
-    unique: false,
-    trim: true,
-  }], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-  friends: [{
-    type: String,
-    unique: false,
-    trim: true,
-  }],
+    
+//  url: {
+//     type: String,
+//   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+
+  comments:[
+    {
+        commentId: {
+        type: Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(),
+      },
+        commentBody: {
+        type: String,
+        required: true,
+        maxlength: 280,
+      },
+    }
+  ], //[{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  
+  friends: [{ type: Schema.Types.ObjectId, ref: "User"}]
+    
 });
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {

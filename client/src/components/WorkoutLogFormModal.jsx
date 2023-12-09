@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { ADD_WORKOUT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
+import { QUERY_WORKOUTS } from "../utils/queries";
 
 const WorkoutLogFormModal = ({ show, onHide }) => {
   const [workoutType, setWorkoutType] = useState("");
@@ -9,7 +10,10 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
   const [url, setUrl] = useState("");
   const [notes, setNotes] = useState("");
 
-  const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
+  const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
+    refetchQueries: [QUERY_WORKOUTS]
+  });
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,9 +22,9 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
       const { data } = await addWorkout({
         variables: {
           workoutType,
-          title,
+          workoutTitle: title,
           url,
-          notes,
+          workoutText: notes
         },
       });
 
@@ -28,6 +32,7 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
       setTitle("");
       setUrl("");
       setNotes("");
+      onHide();
     } catch (err) {
       console.error(err);
     }
@@ -60,6 +65,7 @@ const WorkoutLogFormModal = ({ show, onHide }) => {
           <Form.Group controlId="workoutType">
             <Form.Label>Workout Type</Form.Label>
             <Form.Select size="sm" value={workoutType} onChange={handleWorkoutTypeChange}>
+                <option>Select One</option>
                 <option>Strength</option>
                 <option>Meditation</option>
                 <option>Yoga</option>

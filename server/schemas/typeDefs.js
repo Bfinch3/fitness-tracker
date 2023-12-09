@@ -1,12 +1,12 @@
 const typeDefs = `
 type User {
   _id: ID
-  name: String
-  email: String
-  password: String
-  workouts: [String]!
-  comments: [String]!
-  friends: [String]!
+  name: String!
+  email: String!
+  password: String!
+  workouts: [Workout]
+  comments: [Comment]
+  friends: [User]
 }
 type Workout {
   _id: ID
@@ -21,33 +21,37 @@ type Workout {
 type Comment {
   _id: ID
   commentBody: String
-  username: String
+  name: String
   createdAt: String
 }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
+
+
+
+type Auth {
+  token: ID!
+  user: User
+}
 
   type Query {
     users: [User]!
     user(userId: ID!): User
+    workouts(userId: ID!): [Workout]
     workout(workoutId: ID!): Workout
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
-    
-    
+    friendEmail(searchTerm: String!): [User]
     me: User
   }
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addWorkout(userId: ID!, workout: String!): User
+    addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, url: String!): Workout
     removeUser: User
     removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
+    addFriend(friendId: ID!): User
   }
 `;
 

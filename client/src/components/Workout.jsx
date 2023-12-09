@@ -2,15 +2,14 @@
 
 import WorkoutLinks from "./WorkoutLinks";
 import CommentsSection from "./CommentsSection";
+import WorkoutList from "./WorkoutList";
 
 const profilePictureStyle = {
   height: "0.5in",
   borderRadius: "0.25in"
 };
 
-function Workout({ title, type, links, comments }) {
-
-  
+function Workout({ workoutType, title, url, notes, comments }) {
   return (
     <div className="card flex-grow-1 box-shadow col-7">
       <div className="card-header">
@@ -31,25 +30,19 @@ function Workout({ title, type, links, comments }) {
         </h4>
 
         <div className="d-flex gap-2 align-items-center pt-2">
-          <span>Summary</span>
-          <i className="fa-solid fa-caret-right"></i>
-          <span className="badge bg-secondary rounded-pill p-2 d-inline-flex gap-2">
-            <i className="fa-solid fa-bookmark"></i>
-            {type}
-          </span>
+          {workoutType}
         </div>
       </div>
       <div className="card-body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, eos. Iusto eligendi accusamus iste culpa reprehenderit ab fuga est aliquam molestiae optio eos hic enim, corrupti placeat nemo voluptatem vel.</p>
-
-        <WorkoutLinks links={links}/>
+        <p>{title}</p>
+        { url }
 
         <hr/>
 
         <CommentsSection comments={comments} />
       </div>
     </div>
-  )
+  );
 }
 
 export default Workout;

@@ -1,4 +1,6 @@
 import ThemeToggler from './ThemeToggler';
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 function NavigationBar({ theme, setTheme }){
 
@@ -19,11 +21,14 @@ function NavigationBar({ theme, setTheme }){
         <div className="collapse navbar-collapse" id="nav-content">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
+              <Link className="nav-link" to="/userpage">My Workouts</Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Settings</a>
-            </li>
+             {/* Conditionally render the logout link if the user is authenticated */}
+             {Auth.loggedIn() && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={Auth.logout}>Logout</button>
+              </li>
+            )}
           </ul>
           <ThemeToggler theme={theme} setTheme={setTheme}/>
         </div>
