@@ -17,7 +17,7 @@ function WorkoutList() {
       <div className="card-header">
         <h4 className="card-title d-flex flex-wrap gap-2 mb-0 mt-1">
           <span>My Workouts</span>
-          <DropdownFilter text="Low Intensity" />
+          {/* <DropdownFilter text="Low Intensity" /> */}
           <DropdownFilter isAdd={true} />
         </h4>
       </div>
