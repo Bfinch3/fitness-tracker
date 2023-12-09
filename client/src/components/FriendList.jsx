@@ -1,3 +1,4 @@
+// FriendList.jsx
 import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -7,16 +8,14 @@ function FriendList() {
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { userId: Auth.getProfile().data._id },
   });
-console.log(data);
+
+  console.log(data);
+
+  const friends = data?.user?.friends ?? [];
+
   return (
     <div>
-      {(data?.user.friends??[]).map((friends.name) => (
-        <Friend 
-            key={user._id} 
-            _id={user._id} 
-            friends={user.friends.name} 
-        />
-      ))}
+      <Friend friends={friends} />
     </div>
   );
 }

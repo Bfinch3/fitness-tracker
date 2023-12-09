@@ -1,17 +1,25 @@
+import React from "react";
 import Card from "react-bootstrap/Card";
 
 function Friend({ friends }) {
-  // if (!friends.length) {
-  //   return <h3>No friends yet</h3>;
-  // }
+  // Check if friends is defined before mapping
+  if (!friends) {
+    return
+  }
 
   return (
     <>
       <Card>
-        <Card.Header>Friends</Card.Header>
-        <Card.Body>
-          <Card.Text>{friends}</Card.Text>
-        </Card.Body>
+        <Card.Header>
+          Friends
+          <ul>
+            {friends.map((friend) => (
+              <li key={friend._id}>
+                {friend.name}
+              </li>
+            ))}
+          </ul>
+        </Card.Header>
       </Card>
     </>
   );

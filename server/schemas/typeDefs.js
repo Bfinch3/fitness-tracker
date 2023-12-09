@@ -52,7 +52,6 @@ type Auth {
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
     addFriend(friendId: ID!): User
-    
   }
 `;
 
