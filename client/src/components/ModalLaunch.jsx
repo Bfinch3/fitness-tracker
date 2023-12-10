@@ -15,8 +15,8 @@ const ModalLaunch = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShowModal}>
-        Log New Workout
+      <Button variant="primary" size='sm' onClick={handleShowModal} style={{width: "1.95rem"}}>
+        <i className='fa fa-plus' />
       </Button>
 
       <WorkoutLogFormModal show={showModal} onHide={handleHideModal} />
