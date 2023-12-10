@@ -25,60 +25,68 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-mutation Mutation($workoutTitle: String!, $workoutText: String!, $workoutType: String!, $url: String!) {
-  addWorkout(workoutTitle: $workoutTitle, workoutText: $workoutText, workoutType: $workoutType, url: $url) {
-    workoutTitle
-    workoutText
-    workoutType
-    url
-    createdAt
-    _id
+  mutation Mutation(
+    $workoutTitle: String!
+    $workoutText: String!
+    $workoutType: String!
+    $url: String!
+  ) {
+    addWorkout(
+      workoutTitle: $workoutTitle
+      workoutText: $workoutText
+      workoutType: $workoutType
+      url: $url
+    ) {
+      workoutTitle
+      workoutText
+      workoutType
+      url
+      createdAt
+      _id
+    }
   }
-}
 `;
 
 export const REMOVE_WORKOUT = gql`
-  mutation removeWorkout($workout: String!) {
-    removeWorkout(workout: $workout) {
+  mutation Mutation($workoutId: ID!) {
+    removeWorkout(workoutId: $workoutId) {
       _id
-      name
-      workouts
     }
   }
 `;
 
 export const ADD_COMMENT = gql`
-mutation Mutation($commentBody: String!, $workoutId: ID!) {
-  addComment(commentBody: $commentBody, workoutId: $workoutId) {
-    commentBody
-    createdAt
-    commentAuthor
-    _id
+  mutation Mutation($commentBody: String!, $workoutId: ID!) {
+    addComment(commentBody: $commentBody, workoutId: $workoutId) {
+      commentBody
+      createdAt
+      commentAuthor
+      _id
+    }
   }
-}
 `;
 
 // Add a friend by their email
 export const ADD_FRIEND = gql`
-mutation Mutation($friendId: ID!) {
-  addFriend(friendId: $friendId) {
-    name
-    _id
-    email
-    friends {
+  mutation Mutation($friendId: ID!) {
+    addFriend(friendId: $friendId) {
+      name
       _id
+      email
+      friends {
+        _id
+      }
     }
   }
-}
 `;
 
 // Remove a friend by their name
 export const REMOVE_FRIEND = gql`
-mutation RemoveFriend($name: String!) {
-  removeFriend(name: $name) {
-    _id
-    name
-    friends
+  mutation RemoveFriend($name: String!) {
+    removeFriend(name: $name) {
+      _id
+      name
+      friends
+    }
   }
-}
 `;

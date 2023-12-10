@@ -5,13 +5,16 @@ import MarkdownEditor from "./MarkdownEditor";
 import WorkoutLink from "./WorkoutLink";
 import { Form } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import { REMOVE_WORKOUT } from "../utils/mutations";
+import { redirect } from "react-router-dom";
 
 const profilePictureStyle = {
   height: "0.5in",
   borderRadius: "0.25in"
 };
 
-function Workout({ type, title, link, notes, comments }) {
+function Workout({ id, type, title, link, notes, comments }) {
   const [inEditMode, setEditMode] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -20,6 +23,7 @@ function Workout({ type, title, link, notes, comments }) {
   const [editType, setEditType] = useState(type);
   const [editNotes, setEditNotes] = useState(notes);
   const [editLink, setEditLink] = useState(link); 
+  const [removeWorkout, { error }] = useMutation(REMOVE_WORKOUT);
 
   const titleInputField = useRef();
   const workoutTypeSelection = useRef();
@@ -32,6 +36,16 @@ function Workout({ type, title, link, notes, comments }) {
     workoutTypeSelection.current.value = type;
     textDiv.current.innerHTML = markdownConverter.makeHtml(notes);
   }, []);
+
+  function deleteWorkout() {
+    removeWorkout({
+      variables: { workoutId: id }
+    }).then(() => {
+      window.location = "/userpage";
+    });
+    
+  }
+
 
   function resetEdits() {
     setEditTitle(title);
@@ -58,6 +72,7 @@ function Workout({ type, title, link, notes, comments }) {
 
     // TODO: Send query to update workout by workoutId
 
+
     // TODO: Wait for the query
 
     // Reload the page
@@ -74,7 +89,7 @@ function Workout({ type, title, link, notes, comments }) {
         <button className="btn btn-primary" style={btnWidth} onClick={() => setEditMode(true)}>
           <i className="fa-solid fa-pencil"></i>
         </button>
-        <button className="btn btn-danger" style={btnWidth}>
+        <button className="btn btn-danger" style={btnWidth} onClick={() => deleteWorkout()}>
           <i className="fa-solid fa-trash"></i>
         </button>
       </>

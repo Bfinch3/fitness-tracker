@@ -93,14 +93,20 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    //this allows us to remove a skill
-    removeWorkout: async (parent, { workout }, context) => {
+    //this allows us to remove a workout
+    removeWorkout: async (parent, { workoutId }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        const workout = await Workout.findOneAndDelete({
+          _id: workoutId,
+          userId: context.user._id,
+        });
+        await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { workouts: workout } },
+          { $pull: { workouts: workout._id } },
           { new: true }
         );
+
+        return workout;
       }
       throw AuthenticationError;
     },
