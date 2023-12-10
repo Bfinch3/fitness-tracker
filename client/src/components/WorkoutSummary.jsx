@@ -11,7 +11,7 @@ function WorkoutSummary({ type, title, notes, _id }) {
   // find workout array
   // desconstruct to pull out type, title, notes
   return (
-    <Link to={`/workout/${_id}`}>
+    <Link to={`/workout/${_id}`} style={style}>
     <Card>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
