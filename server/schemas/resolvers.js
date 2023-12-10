@@ -110,6 +110,24 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    //This allows us to edit a workout
+    editWorkout: async (parent, { workoutId, workoutTitle, workoutText, workoutType, url }, context) => {
+      if (context.user) {
+        const workout = await Workout.findOneAndUpdate(
+          { _id: workoutId },
+          {
+            workoutTitle,
+            workoutText,
+            workoutType,
+            url,
+          },
+          { new: true }
+        );
+        return workout;
+      }
+      throw AuthenticationError;
+    },
+
     //This allows us to add a comment
     addComment: async (parent, { commentBody, workoutId }, context) => {
       if (context.user) {

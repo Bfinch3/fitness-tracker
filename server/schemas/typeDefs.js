@@ -53,6 +53,7 @@ type Auth {
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
     addFriend(friendId: ID!): User
+    editWorkout(workoutId: ID!, workoutTitle: String, workoutText: String, workoutType: String, url: String): Workout
   }
 `;
 
