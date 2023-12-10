@@ -55,6 +55,17 @@ export const REMOVE_WORKOUT = gql`
   }
 `;
 
+export const EDIT_WORKOUT = gql`
+mutation Mutation($workoutId: ID!, $workoutTitle: String!, $workoutText: String!, $workoutType: String!, $url: String!) {
+  editWorkout(workoutId: $workoutId, workoutTitle: $workoutTitle, workoutText: $workoutText, workoutType: $workoutType, url: $url) {
+    workoutText
+    workoutTitle
+    workoutType
+    url
+  }
+}
+`;
+
 export const ADD_COMMENT = gql`
   mutation Mutation($commentBody: String!, $workoutId: ID!) {
     addComment(commentBody: $commentBody, workoutId: $workoutId) {
