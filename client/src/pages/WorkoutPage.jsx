@@ -39,7 +39,7 @@ console.log(data);
 
   return (
     <div className="d-flex gap-2 p-2 align-items-start flex-wrap" style={ mainDivStyle }>
-      <Workout title={workout.workoutTitle} type={workout.workoutType} text={workout.workoutText} link={link} comments={workout.comments} />
+      <Workout id={id} title={workout.workoutTitle} type={workout.workoutType} text={workout.workoutText} link={link} comments={workout.comments} />
     </div>
   // <Card>
   //   <Card.Title>{workout.workoutTitle}</Card.Title>
