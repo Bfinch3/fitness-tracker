@@ -62,7 +62,7 @@ function Aside() {
 
   return (
     <>
-      <div className="card col-5 box-shadow aside overflow-hidden">
+      <div className="card col-5 box-shadow aside overflow-hidden md-order-1">
         <div style={{ ...profilePictureStyle, backgroundImage: me?.profilePicture ? `url(${me.profilePicture})` : "url(/default-pfp.jpg)" }}></div>
 
         <div className="card-body">
