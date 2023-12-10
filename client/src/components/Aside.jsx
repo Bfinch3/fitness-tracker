@@ -1,14 +1,12 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
-import { useMutation } from "@apollo/client";
 import { ADD_FRIEND } from "../utils/mutations";
 
 const profilePictureStyle = {
   height: "2in",
   maxHeight: "2in",
   backgroundColor: "var(--dark)",
-  backgroundImage: "url(/default-pfp.jpg)",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "contain",
@@ -16,53 +14,62 @@ const profilePictureStyle = {
 };
 
 function Aside() {
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data, error } = useQuery(QUERY_ME);
+  console.log("loading:", loading);
+  console.log("data:", data);
+  console.log("error:", error);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const [addFriend] = useMutation(ADD_FRIEND);
+  const me = data?.me;
 
-  const { me } = data || {};
+  const [clickedOnce, setClickedOnce] = useState(false);
 
   const handleAddFriend = async (friendId) => {
     try {
-      // Check if the friend is already in the list
-      if (me.friends.some((friend) => friend._id === friendId)) {
-        console.log("Friend already added");
-        return;
-      }
+      if (clickedOnce) {
+        // Perform the mutation
+        await addFriend({
+          variables: { friendId },
+          refetchQueries: [{ query: QUERY_ME }],
+        });
 
-      // Perform the mutation
-      await addFriend({
-        variables: { friendId },
-        update: (cache, { data }) => {
-          // Update the cache to reflect the new state
-          const updatedData = cache.readQuery({ query: QUERY_ME });
-          cache.writeQuery({
-            query: QUERY_ME,
-            data: {
-              me: {
-                ...updatedData.me,
-                friends: [...updatedData.me.friends, data.addFriend.friend],
-              },
-            },
-          });
-        },
-      });
+        // Reset the click state
+        setClickedOnce(false);
+      } else {
+        // Set the click state to true
+        setClickedOnce(true);
+
+        // Set a timeout to reset the click state after a certain period (e.g., 500ms)
+        setTimeout(() => {
+          setClickedOnce(false);
+        }, 500);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <p>Error loading data</p>;
+  }
+
+  console.log("Data:", data);
+
   return (
     <>
       <div className="card col-5 box-shadow aside overflow-hidden">
-        <div style={profilePictureStyle}></div>
+        <div style={{ ...profilePictureStyle, backgroundImage: me?.profilePicture ? `url(${me.profilePicture})` : "url(/default-pfp.jpg)" }}></div>
 
         <div className="card-body">
           <h5 className="card-title">{me?.name || "Unknown"}</h5>
           <h6 className="card-subtitle text-body-secondary mb-2">
             Date Joined: {me?.createdAt ? new Date(me.createdAt).toLocaleString() : "Unknown"}
+            console.log("me:", me);
           </h6>
           <ul className="card-text">
             My friends:
