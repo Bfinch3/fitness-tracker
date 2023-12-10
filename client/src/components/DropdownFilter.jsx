@@ -1,7 +1,7 @@
 function DropdownFilter({ text, isAdd }) {
   return isAdd ? (
     <button className="btn rounded-pill btn-primary btn-sm d-inline-flex gap-2 align-items-center">
-      Filter
+      Filter by Workout Type
       <i className="fa fa-plus"></i>
     </button>
   ) : (

@@ -80,30 +80,11 @@ const resolvers = {
       // const currentUser = await findUserById(user._id);
       const friendUser = await User.findOneAndUpdate({ _id: user._id }, { $addToSet: { friends: friendId } });
 
-      // if (friendUser && !currentUser.friends.includes(friendUser.name)) {
-      //   currentUser.friends.push(friendUser.name);
-      //   await currentUser.save();
-      // }
+ 
 
       return friendUser;
     },
-    
-    // removeFriend: async (_, { name }, { user }) => {
-    //   if (!user) throw AuthenticationError;
-    
-    //   const currentUser = await findUserById(user._id);
-    //   const friendUser = await User.findOne({ name });
-    
-    //   if (currentUser && friendUser) {
-    //     const friendIndex = currentUser.friends.indexOf(friendUser._id);
-    //     if (friendIndex !== -1) {
-    //       currentUser.friends.splice(friendIndex, 1);
-    //       await currentUser.save();
-    //     }
-    //   }
-    
-      // return currentUser;
-    // },
+
 
     //This allows us to remove a user
     removeUser: async (parent, args, context) => {
@@ -112,14 +93,20 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    //this allows us to remove a skill
-    removeWorkout: async (parent, { workout }, context) => {
+    //this allows us to remove a workout
+    removeWorkout: async (parent, { workoutId }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        const workout = await Workout.findOneAndDelete({
+          _id: workoutId,
+          userId: context.user._id,
+        });
+        await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { workouts: workout } },
+          { $pull: { workouts: workout._id } },
           { new: true }
         );
+
+        return workout;
       }
       throw AuthenticationError;
     },
