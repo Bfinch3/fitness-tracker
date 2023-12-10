@@ -44,9 +44,33 @@ Upon cloning our repo to your VS Code or code editor, please use the following i
 Once the homepage to our Fitness Tracker opens within the browser, you will need sign up to create your profile. Once there, you can create a new workout log. Upon clicking on the "Log New Workout" button a small window will appear in which you can create your new workout log. 
 
 
-## Contribute
+## Contributors and Resources
+<br>Lindsey Carlso:https://github.com/lindseycarlson23 | Front End/Back End <br> 
+<br>Billy Finch:https://github.com/Bfinch3  | Back End/Front End<br> 
+<br>Chris Valada: https://github.com/clvalada | Front End<br>
+<br>Fernando Valle: https://github.com/elmfer | Front End<br>
+<br>Alberto Aleman Jr.:https://github.com/aalemanyz67 | Back End/Front End<br>
 
+### Resources
+The Fitness Tracker Application was built using the following packages and MERN Stack
+<br>![Alt text](assets/images/Mern.png) <br>
 
+Packages:
+<br>@apollo/server<br>
+<br>apollo-server-express<br>
+<br>bcrypt<br>
+<br>express<br>
+<br>graphql<br>
+<br>jsonwebtoken<br>
+<br>mongoosedb<br>
+<br>bootstrap<br>
+<br>react-bootstrap<br>
+<br>react-dom<br>
+<br>react-router-dom<br>
+<br>shadow<br>
+<br>jwt-decode<br>
+<br>@fortawesome/fontawesome-free<br>
+vide<br>
 
 ## Tests
 
