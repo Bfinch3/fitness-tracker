@@ -48,7 +48,7 @@ type Auth {
     login(email: String!, password: String!): Auth
     addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, url: String!): Workout
     removeUser: User
-    removeWorkout(workout: String!): User
+    removeWorkout(workoutId: ID!): Workout
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
     addFriend(friendId: ID!): User
