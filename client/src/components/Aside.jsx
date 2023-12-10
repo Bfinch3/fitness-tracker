@@ -1,3 +1,5 @@
+import AddFriendModalLaunch from "./AddFriendModalLaunch";
+
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -69,19 +71,23 @@ function Aside() {
           <h5 className="card-title">{me?.name || "Unknown"}</h5>
           <h6 className="card-subtitle text-body-secondary mb-2">
             Date Joined: {me?.createdAt ? new Date(me.createdAt).toLocaleString() : "Unknown"}
-            console.log("me:", me);
           </h6>
-          <ul className="card-text">
-            My friends:
-            {me?.friends && me.friends.length > 0 ? (
-              <ul>
-                {me.friends.map((friend) => (
-                  <li key={friend._id}>{friend.name || "Unknown"}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>No friends yet.</p>
-            )}
+          <hr />
+          <AddFriendModalLaunch handleAddFriend={handleAddFriend}/>
+          { me?.friends.length > 0 ?
+            <h5 className="card-title mt-2 d-flex align-items-center gap-2">
+              Friends <h6 className="m-0"><span className="badge text-bg-secondary rounded-pill">{me?.friends.length}</span></h6>
+            </h5> :
+            <h5 className="card-title mt-2">No friends yet.</h5>
+          }
+          <ul class="list-group list-group-flush overflow-hidden">
+          { me?.friends.map((friend) => (
+            <li class="list-group-item d-flex align-items-center gap-2" key={friend._id}>
+              <img src="/assets/images/default-pfp.jpg" className="rounded-pill" style={{height: "0.3in"}} />
+              <span className="text-nowrap">{friend.name}</span>
+            </li>
+            ))
+          }
           </ul>
         </div>
       </div>
