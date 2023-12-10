@@ -41,28 +41,7 @@ console.log(data);
     <div className="d-flex gap-2 p-2 align-items-start flex-wrap" style={ mainDivStyle }>
       <Workout id={id} title={workout.workoutTitle} type={workout.workoutType} notes={workout.workoutText} link={link} comments={workout.comments} />
     </div>
-  // <Card>
-  //   <Card.Title>{workout.workoutTitle}</Card.Title>
-  //   <div className="justify-self-end d-flex gap-2">
-  //           {/* <button className="btn btn-primary">
-  //             <i className="fa-solid fa-pencil"></i>
-  //           </button>
-  //           <button className="btn btn-danger">
-  //             <i className="fa-solid fa-trash"></i>
-  //           </button> */}
-  //         </div>
-  //   <Card.Body>
-  //     <Card.Text>{workout.workoutType}</Card.Text>
-  //     <Link to={workout.url}>Workout Link</Link>
-  //     <Card.Text>{workout.workoutText}</Card.Text>
-  //     <div className="my-5">
-  //       <CommentList comments={workout.comments}/>
-  //     </div>
-  //     <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-  //       <CommentForm workoutID={workout._id}/>
-  //     </div>
-  //   </Card.Body>
-  // </Card>
+
 
   )
 }
