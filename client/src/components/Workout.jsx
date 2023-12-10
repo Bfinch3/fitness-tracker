@@ -83,11 +83,6 @@ function Workout({ id, type, title, link, notes, comments }) {
 
     // TODO: Send query to update workout by workoutId
     editWorkout();
-
-    // TODO: Wait for the query
-
-    // Reload the page
-    window.location.reload();
   }
 
   function renderEditButtons() {
