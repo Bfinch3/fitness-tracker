@@ -8,6 +8,11 @@ const style = {
 
 //summary needs to include type, title, and notes
 function WorkoutSummary({ type, title, notes, _id }) {
+
+  // turn markdown in to plain text for summary and limit characters
+  function plainText(text, maxLength = 100) {
+    return text.replace(/[\][=~`#|*_-]/g, "").substring(0, maxLength);
+  }
   // find workout array
   // desconstruct to pull out type, title, notes
   return (
@@ -16,7 +21,7 @@ function WorkoutSummary({ type, title, notes, _id }) {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle>{type}</Card.Subtitle>
-        <Card.Text>{notes}</Card.Text>  
+        <Card.Text>{plainText(notes)}</Card.Text>  
       </Card.Body>
     </Card>
     </Link>
