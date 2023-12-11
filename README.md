@@ -1,5 +1,5 @@
 # Fitness Tracker
-<br>Deployed Page Link: <br> 
+<br>Deployed Page Link:https://fitoness-tracker-779b260a5616.herokuapp.com/<br> 
 <br>Fitness Tracker Repo: https://github.com/Bfinch3/fitness-tracker<br>
 
 Created by:
@@ -79,19 +79,36 @@ vide<br>
 ## Questions
 
 For any questions, please contact me via:
+<br>Lindsey Carlso:https://github.com/lindseycarlson23 <br> 
+<br>Billy Finch:https://github.com/Bfinch3 <br>
+<br>Chris Valada: https://github.com/clvalada<br>
+<br>Fernando Valle: https://github.com/elmfer <br>
+<br>Alberto Aleman Jr.:https://github.com/aalemanyz67 <br>
 
-- Email: 
-- GitHub: [](https://github.com/)
 
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Screenshots
+Initial login page:
+![Alt text](<assets/images/workout page.png>)<br>
+
+User creates a personal workout log:
+![Alt text](<assets/images/personal workout page.png>)<br>
+
+Creating a workout log demo:
+![Alt text](<assets/images/workout gif.gif>)<br>
+
+Editing and deleting workout log
+![Alt text](<assets/images/Editing and deleting workout.gif>)<br>
+
+User can add friends to their profile:
+![Alt text](<assets/images/adding friends.gif>)<br>
 
 The workouts pages from November 28, 2023.
 ![Screenshot 2023-11-28](./assets/images/screenshot-2023_11_28.png)
-![Screenshot 2023-11-28](./assets/images/screenshot-2023_11_28.png)
+
 
 A single workout page from December 5, 2023.
 ![Screenshot 2023-12-5](./assets/images/screenshot-2023_12_5.png)
