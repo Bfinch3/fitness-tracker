@@ -44,6 +44,7 @@ query Query {
     me {
       name
       _id
+      createdAt
       email
       workouts {
         workoutTitle
