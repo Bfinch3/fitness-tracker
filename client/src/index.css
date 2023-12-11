@@ -91,6 +91,27 @@ nav {
   .brand-image-glow {
     width: 350px;
   }
+
+  .md-order-1 {
+    order: 1;
+  }
+
+  .md-order-2 {
+    order: 2;
+  }
+
+  .md-flex-direction-column {
+    flex-direction: column;
+  }
+
+  .aside {
+    max-width: unset;
+    width: 100%;
+  }
+
+  .lg-w-100 {
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {

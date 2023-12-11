@@ -1,14 +1,19 @@
-function DropdownFilter({ text, isAdd }) {
-  return isAdd ? (
-    <button className="btn rounded-pill btn-primary btn-sm d-inline-flex gap-2 align-items-center">
-      Filter by Workout Type
-      <i className="fa fa-plus"></i>
-    </button>
-  ) : (
-    <button className="btn rounded-pill btn-primary btn-sm d-inline-flex gap-2 align-items-center">
-      { text }
-      <i className="fa fa-caret-down"></i>
-    </button>
+
+
+function DropdownFilter({children}) {
+  return (
+    <select className="btn rounded-pill btn-primary btn-sm d-inline-flex gap-2 align-items-center">
+      <option>Filter by Type</option>
+      <option>Strength</option>
+      <option>Meditation</option>
+      <option>Yoga</option>
+      <option>Cardio</option>
+      <option>Cycling</option>
+      <option>Outdoor</option>
+      <option>Running</option>
+      <option>Walking</option> 
+      <option>Stretching</option> 
+    </select>
   );
 }
 

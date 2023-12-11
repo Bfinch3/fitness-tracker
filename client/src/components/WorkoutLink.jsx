@@ -77,15 +77,13 @@ function WorkoutLink({inEditMode, link, editLink, setEditLink}) {
 
   return (
     <>
-      <h4>Workout Link</h4>
+      <h5>Workout Link:</h5>
       <div className="d-flex flex-column gap-2">
         <div className="input-group overflow-hidden" key={link.url}>
           <a className="btn btn-secondary" href={link.url} style={linkStyle}>
-            <i className="fa fa-paperclip"></i>
+            <i className="fa fa-link"></i>
           </a>
-          <a className="btn btn-primary text-start flex-grow-1" href={link.url}>
-            { link.text }
-          </a>
+         
         </div>
       </div>
     </>

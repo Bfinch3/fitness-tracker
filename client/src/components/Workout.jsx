@@ -83,11 +83,6 @@ function Workout({ id, type, title, link, notes, comments }) {
 
     // TODO: Send query to update workout by workoutId
     editWorkout();
-
-    // TODO: Wait for the query
-
-    // Reload the page
-    window.location.reload();
   }
 
   function renderEditButtons() {
@@ -135,10 +130,10 @@ function Workout({ id, type, title, link, notes, comments }) {
         </h4>
 
         <div className="d-flex gap-2 align-items-center pt-2">
-          <span>Summary</span>
-          <i className="fa-solid fa-caret-right"></i>
+          <span></span>
+          
           <span className={`badge bg-secondary rounded-pill p-2 d-inline-flex gap-2 ${inEditMode ? "d-none" : ""}`}>
-            <i className="fa-solid fa-bookmark"></i>
+         
             {type}
           </span>
           <Form.Select className={!inEditMode ? "d-none" : ""} ref={workoutTypeSelection} size="sm" onChange={() => setEditType(workoutTypeSelection.current.value)}>
@@ -155,6 +150,7 @@ function Workout({ id, type, title, link, notes, comments }) {
         </div>
       </div>
       <div className="card-body">
+        <h5>My Notes:</h5>
         <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={textDiv}/>
         <div className={!inEditMode ? 'd-none' : ''}>
           <MarkdownEditor text={editText} setText={setEditText} />
