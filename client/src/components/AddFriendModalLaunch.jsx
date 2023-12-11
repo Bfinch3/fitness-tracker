@@ -11,8 +11,9 @@ const AddFriendModalLaunch = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShowModal}>
+      <Button variant="primary" size="sm" onClick={handleShowModal} className="w-100 rounded-pill">
         Add Friend
+        <i className="fa fa-user ms-2" />
       </Button>
 
       <AddFriendModal show={showModal} onHide={handleHideModal} />

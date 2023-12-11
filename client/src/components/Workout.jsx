@@ -7,7 +7,7 @@ import { Form } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { REMOVE_WORKOUT } from "../utils/mutations";
-import { redirect } from "react-router-dom";
+import { EDIT_WORKOUT } from "../utils/mutations";
 
 const profilePictureStyle = {
   height: "0.5in",
@@ -21,9 +21,10 @@ function Workout({ id, type, title, link, notes, comments }) {
   // These variables are for when the user edits the workout, separate from the actual workout content
   const [editTitle, setEditTitle] = useState(title);
   const [editType, setEditType] = useState(type);
-  const [editNotes, setEditNotes] = useState(notes);
+  const [editText, setEditText] = useState(notes);
   const [editLink, setEditLink] = useState(link); 
   const [removeWorkout, { error }] = useMutation(REMOVE_WORKOUT);
+  const [editWorkoutMutation, { error2 }] = useMutation(EDIT_WORKOUT);
 
   const titleInputField = useRef();
   const workoutTypeSelection = useRef();
@@ -43,14 +44,27 @@ function Workout({ id, type, title, link, notes, comments }) {
     }).then(() => {
       window.location = "/userpage";
     });
-    
+  }
+
+  function editWorkout() {
+    editWorkoutMutation({
+      variables: 
+        { workoutId: id, 
+        workoutTitle: editTitle, 
+        workoutType: editType,
+        workoutText: editText,
+        url: editLink.text,
+      },
+    }).then(() => {
+      window.location = "/workout/" + id;
+    });
   }
 
 
   function resetEdits() {
     setEditTitle(title);
     setEditType(type);
-    setEditNotes(notes);
+    setEditText(notes);
     setEditLink(link);
     titleInputField.current.value = title;
     workoutTypeSelection.current.value = type;
@@ -65,18 +79,10 @@ function Workout({ id, type, title, link, notes, comments }) {
     // ---- These variables are what the user edited and used for sending a mutate query to the backend -----//
     // ---- If the user hasn't edited, for example, the title, it will be the original -----//
     // ---- If the user has edited, for example, the notes, it will be the edited note ------//
-    editTitle;
-    editType;
-    editNotes;
-    editLink;
+  
 
     // TODO: Send query to update workout by workoutId
-
-
-    // TODO: Wait for the query
-
-    // Reload the page
-    window.location.reload();
+    editWorkout();
   }
 
   function renderEditButtons() {
@@ -113,7 +119,6 @@ function Workout({ id, type, title, link, notes, comments }) {
       <div className="card-header">
         <h4 className="card-title d-flex gap-2 align-items-center mb-0">
           <img style={profilePictureStyle} src="/default-pfp.jpg"></img>
-          
           <span className={inEditMode ? "d-none" : ""}>{ title }</span>
           <input ref={titleInputField} className={!inEditMode ? "d-none" : "form-control"} onInput={() => setEditTitle(titleInputField.current.value)}/>
 
@@ -125,10 +130,10 @@ function Workout({ id, type, title, link, notes, comments }) {
         </h4>
 
         <div className="d-flex gap-2 align-items-center pt-2">
-          <span>Summary</span>
-          <i className="fa-solid fa-caret-right"></i>
+          <span></span>
+          
           <span className={`badge bg-secondary rounded-pill p-2 d-inline-flex gap-2 ${inEditMode ? "d-none" : ""}`}>
-            <i className="fa-solid fa-bookmark"></i>
+         
             {type}
           </span>
           <Form.Select className={!inEditMode ? "d-none" : ""} ref={workoutTypeSelection} size="sm" onChange={() => setEditType(workoutTypeSelection.current.value)}>
@@ -145,11 +150,12 @@ function Workout({ id, type, title, link, notes, comments }) {
         </div>
       </div>
       <div className="card-body">
+        <h5>My Notes:</h5>
         <div className={`markdown-view py-3 ${inEditMode ? 'd-none' : ''}`} ref={textDiv}/>
         <div className={!inEditMode ? 'd-none' : ''}>
-          <MarkdownEditor text={editNotes} setText={setEditNotes} />
-        </div>
-
+          <MarkdownEditor text={editText} setText={setEditText} />
+        </div>  
+      
         <WorkoutLink inEditMode={inEditMode} link={link} editLink={editLink} setEditLink={setEditLink}/>
 
         <hr/>

@@ -7,6 +7,7 @@ type User {
   workouts: [Workout]
   comments: [Comment]
   friends: [User]
+  createdAt: String
 }
 type Workout {
   _id: ID
@@ -48,10 +49,11 @@ type Auth {
     login(email: String!, password: String!): Auth
     addWorkout(workoutTitle: String!, workoutText: String!, workoutType: String!, url: String!): Workout
     removeUser: User
-    removeWorkout(workoutId: ID!): Workout
+    removeWorkout(workout: String!): User
     addComment(commentBody: String!, workoutId: ID!): Comment
     removeComment(commentId: ID!, workoutId: ID!): Workout
     addFriend(friendId: ID!): User
+    editWorkout(workoutId: ID!, workoutTitle: String, workoutText: String, workoutType: String, url: String): Workout
   }
 `;
 
