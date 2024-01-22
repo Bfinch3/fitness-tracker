@@ -12,8 +12,9 @@ const resolvers = {
     workout: async (parent, { workoutId }) => {
       return Workout.findOne({ _id: workoutId }).populate("comments");
     },
-    workouts: async (parent, { userId }) => {
+    workouts: async (parent, { userId, type }) => {
       const params = userId ? { userId } : {};
+      if(type) params.workoutType = type;
       return Workout.find(params).sort({ createdAt: -1 });
     },
     
