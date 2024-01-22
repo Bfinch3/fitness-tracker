@@ -20,8 +20,8 @@ query Workout($workoutId: ID!) {
   }`
 
 export const QUERY_WORKOUTS = gql`
-query Query($userId: ID!) {
-    workouts(userId: $userId) {
+query Query($userId: ID!, $type: String) {
+    workouts(userId: $userId, type: $type) {
       workoutTitle
       workoutType
       workoutText
