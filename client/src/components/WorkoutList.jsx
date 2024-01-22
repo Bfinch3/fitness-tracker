@@ -15,7 +15,6 @@ function WorkoutList() {
 
   useEffect(() => {
     refetch({type: filterType})
-    console.log(filterType);
   }, [filterType]);
 
   return (
@@ -30,16 +29,21 @@ function WorkoutList() {
       </div>
       <div className="card-body">
         <div className="d-flex flex-column gap-3">
-          {(data?.workouts??[]).map((workout) => (
-            <WorkoutSummary
-              key={workout._id}
-              _id={workout._id}
-              type={workout.workoutType}
-              title={workout.workoutTitle}
-              notes={workout.workoutText}
-            />
-          ))}
+          {data?.workouts.length === 0 ? (
+            <div>No Workouts Found</div>
+          ) : (
+            data?.workouts.map((workout) => (
+              <WorkoutSummary
+                key={workout._id}
+                _id={workout._id}
+                type={workout.workoutType}
+                title={workout.workoutTitle}
+                notes={workout.workoutText}
+              />
+            ))
+          )}
         </div>
+        <div className={ loading ? "spinner-border" : "d-none" } role="status"></div>
       </div>
     </div>
   );
