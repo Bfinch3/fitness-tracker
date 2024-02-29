@@ -14,9 +14,12 @@ function formatMainDiv() {
   mainDiv.classList.remove("container");
 }
 
-export default function Homepage() {
+export default function Homepage({ theme }) {
 
   useEffect(formatMainDiv, []);
+
+  const logoBlendMode = theme == "light" ? "darken" : "lighten";
+  const logoBloomBrightness = theme == "light" ? "0.6" : "0.9";
 
   return (
         
@@ -24,8 +27,10 @@ export default function Homepage() {
       <div className="d-flex py-3 md-py-3 gap-3 align-items-center xs-flex-column container">
         <div className="flex-grow-1 d-grid">
           <div className="layer xs-text-center d-grid">
-            <img src="assets/images/logo/512.png" className="brand-image-glow layer"/>
-            <img src="assets/images/logo/512.png" className="brand-image layer"/>
+            <div style={{ filter: `blur(30px) brightness(${logoBloomBrightness})`, mixBlendMode: logoBlendMode }} className="layer">
+              <div className="brand-image" />
+            </div>
+            <div className="brand-image layer"/>
           </div>
           <div className="text-white layer d-flex flex-column-reverse brand-title">
             <div className="">Fitness Tracker</div>
