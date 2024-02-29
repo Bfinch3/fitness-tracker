@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -18,28 +18,37 @@ import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
 import WorkoutPage from './pages/WorkoutPage';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Homepage />
-      }, 
-      {
-        path: '/userpage',
-        element: <UserPage />
-      },
-      {
-        path: '/workout/:id',
-        element: <WorkoutPage />
-      }
-    ]
-  }
-])
+function Root() {
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App theme={theme} setTheme={setTheme} />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          index: true,
+          element: <Homepage theme={theme} setTheme={setTheme} />
+        }, 
+        {
+          path: '/userpage',
+          element: <UserPage />
+        },
+        {
+          path: '/workout/:id',
+          element: <WorkoutPage />
+        }
+      ]
+    }
+  ])
+
+  return (
+    <RouterProvider router={router} />
+  )
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <Root />
 )
