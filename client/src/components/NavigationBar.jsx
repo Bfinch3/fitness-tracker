@@ -11,7 +11,7 @@ function NavigationBar({ theme, setTheme }){
   return (
     <nav className="navbar navbar-expand-md" style={navColor} data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand d-flex gap-2" href="/">
           <img src="/assets/images/logo/32.png"></img>
           Fitness Tracker
         </a>
