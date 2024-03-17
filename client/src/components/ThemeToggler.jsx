@@ -8,7 +8,7 @@ const lightIconStyle = {
 function ThemeToggler({ theme, setTheme }) {
 
   function onClick() {
-    setTheme(theme == "light" ? "dark" : theme == "dark" ? "light" : light);
+    setTheme(theme == "light" ? "dark" : theme == "dark" ? "light" : "light");
   }
 
   const buttonTheme = theme == "light" ? "dark" : "light";

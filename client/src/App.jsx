@@ -49,8 +49,7 @@ function updateTheme(theme) {
   setTimeout(() => {rootElement.style.transition = "background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1)";}, 100); // Don't apply tranisition immediatley
 }
 
-function App() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+function App({ theme, setTheme }) {
 
   updateTheme(theme); // Set theme as soon as app starts initializing
   useEffect(() => { updateTheme(theme) }, [theme]);
